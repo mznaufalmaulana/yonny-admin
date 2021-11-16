@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { Collapse } from 'reactstrap';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React, { useState } from "react";
+import { Collapse } from "reactstrap";
+import PropTypes from "prop-types";
+import classNames from "classnames";
 
-const SidebarCategory = ({
-  title, icon, isNew, children,
-}) => {
+const SidebarCategory = ({ title, icon, isNew, children }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const categoryClass = classNames({
-    'sidebar__category-wrap': true,
-    'sidebar__category-wrap--open': isCollapsed,
+    "sidebar__category-wrap": true,
+    "sidebar__category-wrap--open": isCollapsed,
   });
 
   const handleToggleCollapse = () => {
@@ -18,18 +16,21 @@ const SidebarCategory = ({
 
   return (
     <div className={categoryClass}>
-      <button type="button" className="sidebar__link sidebar__category" onClick={handleToggleCollapse}>
-        {icon ? <span className={`sidebar__link-icon lnr lnr-${icon}`} /> : ''}
-        <p className="sidebar__link-title">{title}
+      <button
+        type="button"
+        className="sidebar__link sidebar__category"
+        onClick={handleToggleCollapse}
+      >
+        {icon ? <span className={`sidebar__link-icon lnr lnr-${icon}`} /> : ""}
+        <p className="sidebar__link-title">
+          {title}
           {isNew && <span className="sidebar__category-new" />}
         </p>
         <span className="sidebar__category-icon lnr lnr-chevron-right" />
       </button>
       <Collapse isOpen={isCollapsed} className="sidebar__submenu-wrap">
         <ul className="sidebar__submenu">
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
         </ul>
       </Collapse>
     </div>
@@ -44,7 +45,7 @@ SidebarCategory.propTypes = {
 };
 
 SidebarCategory.defaultProps = {
-  icon: '',
+  icon: "",
   isNew: false,
 };
 

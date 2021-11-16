@@ -19,31 +19,36 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
         />
         <SidebarCategory title="Master" icon="database">
           <SidebarLink
-            title="Master Product"
-            route="/pages/one"
+            title="Product Category"
+            route="/master/product"
             onClick={handleHideSidebar}
           />
           <SidebarLink
-            title="Master Type"
-            route="/pages/two"
+            title="Type"
+            route="/master/type"
             onClick={handleHideSidebar}
           />
           <SidebarLink
-            title="Master User"
-            route="/pages/three"
+            title="Region"
+            route="/master/region"
+            onClick={handleHideSidebar}
+          />
+          <SidebarLink
+            title="User"
+            route="/master/user"
             onClick={handleHideSidebar}
           />
         </SidebarCategory>
         <SidebarLink
           title="Product"
           icon="store"
-          route="/log_in"
+          route="/product/list"
           onClick={handleHideSidebar}
         />
         <SidebarLink
           title="Project"
           icon="cog"
-          route="/log_in"
+          route="/project/list"
           onClick={handleHideSidebar}
         />
         <SidebarLink

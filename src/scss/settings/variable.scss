@@ -2,7 +2,7 @@ $themes: (
   light: (
     colorBackground: white,
     colorBackgroundBody: #f2f4f7,
-    colorHeaderDataPicker:#6db0ff,
+    colorHeaderDataPicker: #6db0ff,
     colorText: #646777,
     colorTextAdditional: #646777,
     logoImg: url(../../shared/img/logo/logo_light.svg),
@@ -14,19 +14,19 @@ $themes: (
     colorFieldsBorder: #f2f4f7,
     colorBubble: rgba(242, 244, 247, 0.65),
     colorBubbleActive: rgba(234, 238, 255, 0.6),
-    colorScrollbar: #B4BFD0,
+    colorScrollbar: #b4bfd0,
     colorFitness: #646777,
     colorEmoji: #232329,
   ),
   dark: (
     colorBackground: #232329,
     colorBackgroundBody: #2a2a31,
-    colorHeaderDataPicker:#063263,
+    colorHeaderDataPicker: #063263,
     colorText: #dddddd,
     colorTextAdditional: #999999,
     logoImg: url(../../shared/img/logo/logo_dark.svg),
     colorHover: #38373f,
-    colorFolderHover: #ffffff1A,
+    colorFolderHover: #ffffff1a,
     colorBorder: #333246,
     colorIcon: #605f7b,
     imgInvert: invert(100%),
@@ -36,7 +36,7 @@ $themes: (
     colorScrollbar: #606071,
     colorFitness: #ffffff,
     colorEmoji: #ffffff,
-  )
+  ),
 );
 
 @mixin themify($themes) {
@@ -44,8 +44,13 @@ $themes: (
     .theme-#{$theme} & {
       $theme-map: () !global;
       @each $key, $submap in $map {
-        $value: map-get(map-get($themes, $theme), '#{$key}');
-        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
       }
       @content;
       $theme-map: null !global;
@@ -57,7 +62,7 @@ $themes: (
   @return map-get($theme-map, $key);
 }
 
-$color-accent: #4ce1b6;
+$color-accent: #e3ab45;
 $color-accent-hover: darken($color-accent, 10%);
 $color-additional: #999999;
 $color-additional-hover: darken($color-additional, 10%);
@@ -79,77 +84,55 @@ $color-light-gray: #d8dfe9;
 $color-green: #b8e986;
 $color-green-hover: darken($color-green, 10%);
 
-
 $directions: (
   ltr: (
     direction: ltr,
-
     right: right,
     left: left,
-
-    margin-right: 'margin-right',
-    margin-left: 'margin-left',
-
-    padding-left: 'padding-left',
-    padding-right: 'padding-right',
-
-    border-top-left-radius: 'border-top-left-radius',
-    border-bottom-left-radius: 'border-bottom-left-radius',
-
-    border-top-right-radius: 'border-top-right-radius',
-    border-bottom-right-radius: 'border-bottom-right-radius',
-
-    border-left: 'border-left',
-    border-right: 'border-right',
-
-    translate: 'translate(-50%, -50%);',
-    mirrorY: 'scale(1, 1)',
-
-    border-right-color: 'border-right-color',
-
-    transform-sidebar: 'rotate(90deg)',
-
+    margin-right: "margin-right",
+    margin-left: "margin-left",
+    padding-left: "padding-left",
+    padding-right: "padding-right",
+    border-top-left-radius: "border-top-left-radius",
+    border-bottom-left-radius: "border-bottom-left-radius",
+    border-top-right-radius: "border-top-right-radius",
+    border-bottom-right-radius: "border-bottom-right-radius",
+    border-left: "border-left",
+    border-right: "border-right",
+    translate: "translate(-50%, -50%);",
+    mirrorY: "scale(1, 1)",
+    border-right-color: "border-right-color",
+    transform-sidebar: "rotate(90deg)",
     flex-flow: row nowrap,
-    row: 'row',
-
+    row: "row",
     sidebar-close: translateX(0),
     sidebar-no-desktop: translateX(calc(0%)),
-    '-': '-',
+    "-": "-",
   ),
   rtl: (
     direction: rtl,
-
     right: left,
     left: right,
-
-    margin-right: 'margin-left',
-    margin-left: 'margin-right',
-
-    padding-left: 'padding-right',
-    padding-right: 'padding-left',
-
-    border-top-left-radius: 'border-top-right-radius',
-    border-bottom-left-radius: 'border-bottom-right-radius',
-
-    border-top-right-radius: 'border-top-left-radius',
-    border-bottom-right-radius: 'border-bottom-left-radius',
-
-    border-left: 'border-right',
-    border-right: 'border-left',
-
-    translate: 'translate(50%, -50%);',
-    mirrorY: 'scale(1, -1)',
-
-    border-right-color: 'border-left-color',
-    transform-sidebar: 'rotate(-90deg)',
-
+    margin-right: "margin-left",
+    margin-left: "margin-right",
+    padding-left: "padding-right",
+    padding-right: "padding-left",
+    border-top-left-radius: "border-top-right-radius",
+    border-bottom-left-radius: "border-bottom-right-radius",
+    border-top-right-radius: "border-top-left-radius",
+    border-bottom-right-radius: "border-bottom-left-radius",
+    border-left: "border-right",
+    border-right: "border-left",
+    translate: "translate(50%, -50%);",
+    mirrorY: "scale(1, -1)",
+    border-right-color: "border-left-color",
+    transform-sidebar: "rotate(-90deg)",
     flex-flow: row-reverse nowrap,
-    row: 'row-reverse',
-
+    row: "row-reverse",
     sidebar-close: translateX(0),
-    sidebar-no-desktop:  translateX(calc(100%)),
-    '-': '+',
-  )
+    sidebar-no-desktop: translateX(calc(100%)),
+    "-": "+",
+  ),
 );
 
 @mixin directify($directions) {
@@ -157,8 +140,13 @@ $directions: (
     .#{$direction}-support & {
       $direction-map: () !global;
       @each $key, $submap in $map {
-        $value: map-get(map-get($directions, $direction), '#{$key}');
-        $direction-map: map-merge($direction-map, ($key: $value)) !global;
+        $value: map-get(map-get($directions, $direction), "#{$key}");
+        $direction-map: map-merge(
+          $direction-map,
+          (
+            $key: $value,
+          )
+        ) !global;
       }
       @content;
       $direction-map: null !global;
