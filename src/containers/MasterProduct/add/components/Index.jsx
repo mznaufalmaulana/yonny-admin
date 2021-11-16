@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import { Button, Card, CardBody, Col, Form, FormGroup, Row } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Form,
+  FormGroup,
+  Row,
+  Spinner,
+} from "reactstrap";
 import API from "../../../../services";
 import InputComponent from "../../../Layout/components/InputComponent";
 import SelectComponent from "../../../Layout/components/SelectComponent";
+import SnackbarComponent from "../../../Layout/components/SnackbarComponent";
 
-function Index(props) {
-  const [categoryParent, setCategoryParent] = useState("");
+function Index() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [categoryParent, setCategoryParent] = useState(0);
   const [category, setCategory] = useState("");
+  const [alert, setAlert] = useState(false);
+  const [message, setMessage] = useState("");
 
   function onChangeCategoryParent(val) {
     setCategoryParent(val);
@@ -17,8 +30,26 @@ function Index(props) {
   }
 
   function save() {
-    API.post("product/save").then((result) => {});
-    console.log(`${categoryParent} === ${category}`);
+    setIsLoading(true);
+    let payload = new FormData({
+      category_parent: categoryParent,
+      category_name: category,
+    });
+    API.post(
+      `product-category/store?category_parent=${categoryParent}&category_name=${category}`,
+      payload
+    ).then((result) => {
+      if (result.message === "success") {
+        setIsLoading(false);
+        setAlert(true);
+        setMessage("Data Saved");
+        document.getElementById("form").reset();
+      } else {
+        setIsLoading(false);
+        setAlert(true);
+        setMessage("Data Saved");
+      }
+    });
   }
 
   const Index = (
@@ -33,7 +64,12 @@ function Index(props) {
               </div>
             </Col>
           </Row>
-          <Form>
+          <SnackbarComponent
+            openAlert={alert}
+            message={message}
+            onHide={() => setAlert(false)}
+          />
+          <Form id="form">
             <SelectComponent
               label="Category Parent"
               type="text"
@@ -54,8 +90,17 @@ function Index(props) {
                 size: 10,
               }}
             >
-              <Button className="btn btn-primary text-white" onClick={save}>
+              <Button
+                className="btn btn-primary text-white"
+                onClick={save}
+                // disabled={isLoading}
+              >
                 Save
+                {isLoading ? (
+                  <>
+                    &nbsp; <Spinner size="sm" />{" "}
+                  </>
+                ) : null}
               </Button>
             </Col>
           </FormGroup>
