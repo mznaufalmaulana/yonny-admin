@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, FormGroup, Input, Label } from "reactstrap";
 
 function InputComponent(props) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState();
   useEffect(() => props.onChangeValue(value));
 
   function onChangeValue(e) {

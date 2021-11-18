@@ -3,7 +3,10 @@ import { Col, FormGroup, FormText, Input, Label } from "reactstrap";
 
 function InputFileComponent(props) {
   const [value, setValue] = useState("");
-  useEffect(() => props.onChangeValue(value));
+
+  useEffect(() => {
+    props.onChangeValue(value);
+  }, [value]);
 
   function onChangeValue(e) {
     setValue(e.target.value);

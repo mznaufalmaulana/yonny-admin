@@ -6,7 +6,9 @@ import Select from "react-select";
 function MultipleSelectComponent(props) {
   const animatedComponents = makeAnimated();
   const [value, setValue] = useState(0);
-  useEffect(() => props.onChangeValue(value));
+  useEffect(() => {
+    props.onChangeValue(value);
+  }, [value]);
 
   function onChangeValue(e) {
     setValue(e.target.value);

@@ -42,8 +42,7 @@ const post = (path, param) => {
         },
         body: param,
       })
-        // .then((result) => result.json())
-        .then((result) => console.log(result))
+        .then((result) => result.json())
         .then(
           (result) => {
             resolve(result);

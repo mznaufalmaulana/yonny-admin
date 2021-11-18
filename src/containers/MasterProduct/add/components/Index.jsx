@@ -31,13 +31,8 @@ function Index() {
 
   function save() {
     setIsLoading(true);
-    let payload = new FormData({
-      category_parent: categoryParent,
-      category_name: category,
-    });
     API.post(
-      `product-category/store?category_parent=${categoryParent}&category_name=${category}`,
-      payload
+      `product-category/store?category_parent=${categoryParent}&category_name=${category}`
     ).then((result) => {
       if (result.message === "success") {
         setIsLoading(false);
@@ -47,7 +42,7 @@ function Index() {
       } else {
         setIsLoading(false);
         setAlert(true);
-        setMessage("Data Saved");
+        setMessage(result.message);
       }
     });
   }
@@ -73,7 +68,7 @@ function Index() {
             <SelectComponent
               label="Category Parent"
               type="text"
-              placeholder="Input the Category Parent"
+              placeholder="Nothing Parent Category"
               onChangeValue={(val) => onChangeCategoryParent(val)}
             />
             <InputComponent
@@ -93,7 +88,7 @@ function Index() {
               <Button
                 className="btn btn-primary text-white"
                 onClick={save}
-                // disabled={isLoading}
+                disabled={isLoading}
               >
                 Save
                 {isLoading ? (
