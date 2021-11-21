@@ -1,71 +1,62 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, CardBody, Col, Row } from "reactstrap";
+import { Button, Card, CardBody, Col, Row, Spinner } from "reactstrap";
 import DataTable from "react-data-table-component";
 import { NavLink } from "react-router-dom";
-import API from "../../../../services";
+import API from "../../../services";
 import ModalDelete from "./modal/delete";
-import SnackbarComponent from "../../../Layout/components/SnackbarComponent";
-import ModalEdit from "./modal/edit";
+import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 
-function Index() {
+function List() {
   const [alert, setAlert] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [data, setData] = useState("");
   const [dataModal, setDataModal] = useState("");
-  const [openModalEdit, setOpenModalEdit] = useState(dataModal ? true : false);
   const [openModalDelete, setOpenModalDelete] = useState(
     dataModal ? true : false
   );
 
   const deleteCategory = () => {
-    API.deleteData(`product-category/${dataModal.id}/delete`).then((result) => {
+    API.deleteData(`product-type/${dataModal.id}/delete`).then((result) => {
       if (result.message === "success") {
         setAlert(true);
-        setMessage(`${dataModal.category_name} was deleted`);
+        setMessage(`${dataModal.type_name} was deleted`);
         setOpenModalDelete(false);
       }
     });
   };
 
   useEffect(() => {
-    API.get(`product-category/list`).then((result) => {
+    setIsLoading(true);
+    API.get(`product-type/list`).then((result) => {
       if (result.message === "success") {
         setData(result.data);
+        setIsLoading(false);
       }
     });
   }, [alert]);
-
-  const getDetail = (id) => {
-    API.get(`product-category/${id}`).then((result) => {
-      if (result.message === "success") {
-        setDataModal(result.data);
-        setOpenModalEdit(true);
-      }
-    });
-  };
 
   const cols = [
     {
       name: "No",
       width: "55px",
-      cell: (row) => row.id,
+      cell: (row, index) => index + 1,
     },
     {
       name: "Category Product Name",
-      cell: (row) => row.category_name,
+      cell: (row) => row.type_name,
     },
     {
       name: "",
       width: "150px",
       cell: (row) => (
         <>
-          <a
-            href="#"
+          <NavLink
+            to={`/master/type/edit/${row.id}`}
             className="btn-sm btn-primary mr-1"
-            onClick={() => getDetail(row.id)}
           >
             Edit
-          </a>
+          </NavLink>
 
           <a
             href="#"
@@ -88,12 +79,6 @@ function Index() {
           onHide={() => setOpenModalDelete(false)}
           onDeleted={() => deleteCategory()}
         />
-        <ModalEdit
-          open={openModalEdit}
-          data={dataModal}
-          onHide={() => setOpenModalEdit(false)}
-          onSave={() => deleteCategory()}
-        />
         <SnackbarComponent
           openAlert={alert}
           message={message}
@@ -109,7 +94,7 @@ function Index() {
                 </div>
               </Col>
               <Col>
-                <NavLink to="/master/product/add">
+                <NavLink to="/master/type/add">
                   <Button className="btn btn-primary text-white float-right">
                     + Add Data
                   </Button>
@@ -120,13 +105,20 @@ function Index() {
               columns={cols}
               data={data}
               pagination
-              paginationServer
-              paginationTotalRows={20}
-              paginationPerPage={10}
+              // paginationServer
+              paginationTotalRows={data.length}
+              paginationPerPage={5}
               highlightOnHover
+              progressPending={isLoading}
               paginationComponentOptions={{
                 noRowsPerPage: true,
               }}
+              progressComponent={
+                <div className="text-center p-5">
+                  <p>Memuat Data</p>
+                  <Spinner animation="border" size="lg" />
+                </div>
+              }
             />
           </CardBody>
         </Card>
@@ -137,4 +129,4 @@ function Index() {
   return index;
 }
 
-export default Index;
+export default List;

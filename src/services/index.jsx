@@ -1,5 +1,5 @@
 const isProd = false;
-const urlDev = "HTTP://128.199.218.77/admin";
+const urlDev = "http://128.199.218.77/admin";
 const urlProd = "http://#";
 
 const RootAPI = isProd ? urlProd : urlDev;

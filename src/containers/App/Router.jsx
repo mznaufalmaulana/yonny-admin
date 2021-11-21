@@ -5,28 +5,17 @@ import MainWrapper from "./MainWrapper";
 import LogIn from "../LogIn/index";
 import ExamplePageOne from "../Example/index";
 import ExamplePageTwo from "../ExampleTwo/index";
-import MasterProduct from "../MasterProduct/list";
-import AddMasterProduct from "../MasterProduct/add";
-import Type from "../Type/list";
-import AddType from "../Type/add";
 import AddProduct from "../Product/add";
 import ListProduct from "../Product/list";
 import AddProject from "../Project/add";
 import ListProject from "../Project/list";
+import IndexMasterProduct from "../MasterProduct";
+import IndexMasterType from "../MasterType";
 
 const Pages = () => (
   <Switch>
     <Route path="/pages/one" component={ExamplePageOne} />
     <Route path="/pages/two" component={ExamplePageTwo} />
-  </Switch>
-);
-
-const Master = () => (
-  <Switch>
-    <Route path="/master/product/add" component={AddMasterProduct} />
-    <Route path="/master/product" component={MasterProduct} />
-    <Route path="/master/type/add" component={AddType} />
-    <Route path="/master/type" component={Type} />
   </Switch>
 );
 
@@ -49,8 +38,9 @@ const wrappedRoutes = () => (
     <Layout />
     <div className="container__wrap">
       <Route path="/pages" component={Pages} />
-      <Route path="/master" component={Master} />
-      <Route path="/product" component={Product} />
+      <Route path="/master/product" component={IndexMasterProduct} />
+      <Route path="/master/type" component={IndexMasterType} />
+      {/* <Route path="/product" component={IndexMasterProduct} /> */}
       <Route path="/project" component={Project} />
     </div>
   </div>

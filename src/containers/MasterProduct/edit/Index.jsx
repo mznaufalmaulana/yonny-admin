@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   Button,
   Card,
@@ -6,6 +7,8 @@ import {
   Col,
   Form,
   FormGroup,
+  Input,
+  Label,
   Row,
   Spinner,
 } from "reactstrap";
@@ -14,12 +17,14 @@ import InputComponent from "../../Layout/components/InputComponent";
 import SelectComponent from "../../Layout/components/SelectComponent";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 
-function Add() {
+function Edit(props) {
   const [isLoading, setIsLoading] = useState(false);
-  const [categoryParent, setCategoryParent] = useState(0);
+  const [listParent, setListParent] = useState([]);
+  const [categoryParent, setCategoryParent] = useState("");
   const [category, setCategory] = useState("");
   const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
+  const { id } = useParams();
 
   function onChangeCategoryParent(val) {
     setCategoryParent(val);
@@ -30,10 +35,12 @@ function Add() {
   }
 
   function save() {
+    let payload = JSON.stringify({
+      category_name: category,
+      category_parent: categoryParent,
+    });
     setIsLoading(true);
-    API.post(
-      `product-category/store?category_parent=${categoryParent}&category_name=${category}`
-    ).then((result) => {
+    API.put(`product-category/${id}/update`, payload).then((result) => {
       if (result.message === "success") {
         setIsLoading(false);
         setAlert(true);
@@ -47,6 +54,23 @@ function Add() {
     });
   }
 
+  useEffect(() => {
+    API.get(`product-category/${id}`).then((result) => {
+      if (result.message === "success") {
+        setCategory(result.data.category_name);
+        setCategoryParent(result.data.category_parent);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    API.get(`product-category/list`).then((result) => {
+      if (result.message === "success") {
+        setListParent(result.data);
+      }
+    });
+  }, []);
+
   const Index = (
     <Col md={12}>
       <Card>
@@ -54,7 +78,7 @@ function Add() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">Add Data Master Product</h5>
+                <h5 className="bold-text">Edit Data Master Product</h5>
                 <h5 className="subhead">Example subhead</h5>
               </div>
             </Col>
@@ -65,18 +89,36 @@ function Add() {
             onHide={() => setAlert(false)}
           />
           <Form id="form">
-            <SelectComponent
-              label="Category Parent"
-              type="text"
-              placeholder="Nothing Parent Category"
-              onChangeValue={(val) => onChangeCategoryParent(val)}
-            />
-            <InputComponent
-              label="Category Name"
-              type="text"
-              placeholder="Input the Category Name"
-              onChangeValue={(val) => onChangeCategory(val)}
-            />
+            <FormGroup row>
+              <Label sm={2}>Category Parent</Label>
+              <Col sm={10}>
+                <Input
+                  name="category_parent"
+                  type="select"
+                  defaultValue={categoryParent}
+                  onChange={(e) => {
+                    setCategoryParent(e.target.value);
+                  }}
+                >
+                  <option value={0}>Nothing Parent Category</option>
+                  {listParent.map((data, index) => (
+                    <option value={data.id}>{data.category_name}</option>
+                  ))}
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label sm={2}>Category Name</Label>
+              <Col sm={10}>
+                <Input
+                  name="category_name"
+                  placeholder="Input the Category Name"
+                  type="text"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+              </Col>
+            </FormGroup>
           </Form>
           <FormGroup row>
             <Col
@@ -107,4 +149,4 @@ function Add() {
   return Index;
 }
 
-export default Add;
+export default Edit;

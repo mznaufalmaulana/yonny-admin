@@ -9,31 +9,23 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
-import API from "../../../../services";
-import InputComponent from "../../../Layout/components/InputComponent";
-import SelectComponent from "../../../Layout/components/SelectComponent";
-import SnackbarComponent from "../../../Layout/components/SnackbarComponent";
+import API from "../../../services";
+import InputComponent from "../../Layout/components/InputComponent";
+import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 
-function Index() {
+function Add() {
+  const [type, setType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [categoryParent, setCategoryParent] = useState(0);
-  const [category, setCategory] = useState("");
   const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
 
-  function onChangeCategoryParent(val) {
-    setCategoryParent(val);
-  }
-
-  function onChangeCategory(val) {
-    setCategory(val);
+  function onChangeType(val) {
+    setType(val);
   }
 
   function save() {
     setIsLoading(true);
-    API.post(
-      `product-category/store?category_parent=${categoryParent}&category_name=${category}`
-    ).then((result) => {
+    API.post(`product-type/store?type_name=${type}`).then((result) => {
       if (result.message === "success") {
         setIsLoading(false);
         setAlert(true);
@@ -49,33 +41,27 @@ function Index() {
 
   const Index = (
     <Col md={12}>
+      <SnackbarComponent
+        openAlert={alert}
+        message={message}
+        onHide={() => setAlert(false)}
+      />
       <Card>
         <CardBody>
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">Add Data Master Product</h5>
+                <h5 className="bold-text">Add Data Type</h5>
                 <h5 className="subhead">Example subhead</h5>
               </div>
             </Col>
           </Row>
-          <SnackbarComponent
-            openAlert={alert}
-            message={message}
-            onHide={() => setAlert(false)}
-          />
           <Form id="form">
-            <SelectComponent
-              label="Category Parent"
-              type="text"
-              placeholder="Nothing Parent Category"
-              onChangeValue={(val) => onChangeCategoryParent(val)}
-            />
             <InputComponent
-              label="Category Name"
+              label="Type Name"
               type="text"
-              placeholder="Input the Category Name"
-              onChangeValue={(val) => onChangeCategory(val)}
+              placeholder="Input the Type Name"
+              onChangeValue={(val) => onChangeType(val)}
             />
           </Form>
           <FormGroup row>
@@ -107,4 +93,4 @@ function Index() {
   return Index;
 }
 
-export default Index;
+export default Add;

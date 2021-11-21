@@ -11,10 +11,10 @@ class ModalDelete extends React.Component {
     return (
       <Modal isOpen={this.props.open} toggle={this.props.onHide}>
         <ModalHeader>
-          Delete Data {this.props.data ? this.props.data.type_name : ""}
+          Delete Data {this.props.data ? this.props.data.category_name : ""}
         </ModalHeader>
         <ModalBody>
-          <p>Are you sure to delete this?</p>
+          <p>Are you sure to delete this Category?</p>
           <div className="mt-3 float-right">
             <Button
               className="btn-sm"

@@ -11,15 +11,15 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
   return (
     <div className="sidebar__content">
       <ul className="sidebar__block">
-        <SidebarLink
+        {/* <SidebarLink
           title="Dashboard"
           icon="home"
           route="/log_in"
           onClick={handleHideSidebar}
-        />
+        /> */}
         <SidebarCategory title="Master" icon="database">
           <SidebarLink
-            title="Product Category"
+            title="Category"
             route="/master/product"
             onClick={handleHideSidebar}
           />
@@ -28,7 +28,7 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
             route="/master/type"
             onClick={handleHideSidebar}
           />
-          <SidebarLink
+          {/* <SidebarLink
             title="Region"
             route="/master/region"
             onClick={handleHideSidebar}
@@ -37,9 +37,9 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
             title="User"
             route="/master/user"
             onClick={handleHideSidebar}
-          />
+          /> */}
         </SidebarCategory>
-        <SidebarLink
+        {/* <SidebarLink
           title="Product"
           icon="store"
           route="/product/list"
@@ -80,7 +80,7 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
             route="/pages/two"
             onClick={handleHideSidebar}
           />
-        </SidebarCategory>
+        </SidebarCategory> */}
       </ul>
       {/* <ul className="sidebar__block">
         <SidebarLink

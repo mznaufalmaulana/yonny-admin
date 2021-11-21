@@ -7,7 +7,6 @@ import MultipleSelectComponent from "../../../Layout/components/MultipleSelectCo
 import InputFileComponent from "../../../Layout/components/InputFileComponent";
 
 function Index(props) {
-  const animatedComponents = makeAnimated();
   const [listCategory, setListCategory] = useState([
     { value: 1, label: "category 1" },
     { value: 2, label: "category 2" },
