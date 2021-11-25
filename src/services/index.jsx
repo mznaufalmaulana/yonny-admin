@@ -1,13 +1,14 @@
 const isProd = false;
 const urlDev = "http://128.199.218.77/admin";
+// const urlDev = "http://178.128.99.51:81/admin";
 const urlProd = "http://#";
 
-const RootAPI = isProd ? urlProd : urlDev;
+const Root = isProd ? urlProd : urlDev;
 
 const get = (path) => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      fetch(`${RootAPI}/${path}`, {
+      fetch(`${Root}/${path}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +34,7 @@ const get = (path) => {
 const post = (path, param) => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      fetch(`${RootAPI}/${path}`, {
+      fetch(`${Root}/${path}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +61,7 @@ const post = (path, param) => {
 const deleteData = (path, param) => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      fetch(`${RootAPI}/${path}`, {
+      fetch(`${Root}/${path}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +88,7 @@ const deleteData = (path, param) => {
 const put = (path, param) => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      fetch(`${RootAPI}/${path}`, {
+      fetch(`${Root}/${path}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -114,10 +115,10 @@ const put = (path, param) => {
 const uploadFile = (path, param, method) => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      fetch(`${RootAPI}/${path}`, {
+      fetch(`${Root}/${path}`, {
         method: method,
         headers: {
-          // "content-type": "multipart/form-data",
+          "content-type": "multipart/form-data",
           "Access-Control-Allow-Origin": "*",
           // Authorization: localStorage.getItem("authToken"),
         },
@@ -141,7 +142,7 @@ const uploadFile = (path, param, method) => {
 const download = (path) => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      fetch(`${RootAPI}/${path}`, {
+      fetch(`${Root}/${path}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -150,7 +151,7 @@ const download = (path) => {
         },
       }).then(
         () => {
-          resolve(`${RootAPI}/${path}`);
+          resolve(`${Root}/${path}`);
         },
         (err) => {
           reject(err);
@@ -163,6 +164,7 @@ const download = (path) => {
 };
 
 const API = {
+  Root,
   post,
   deleteData,
   put,

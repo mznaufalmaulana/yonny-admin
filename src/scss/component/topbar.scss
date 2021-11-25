@@ -7,7 +7,7 @@
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
 
   @include themify($themes) {
-    background: themed('colorBackground');
+    background: themed("colorBackground");
   }
 }
 
@@ -31,9 +31,8 @@
   }
 
   &:hover {
-
     @include themify($themes) {
-      background: themed('colorHover');
+      background: themed("colorHover");
     }
   }
 
@@ -59,7 +58,7 @@
   display: none;
 
   @include themify($themes) {
-    background-image: themed('logoImg');
+    background-image: themed("logoImg");
   }
 
   @media screen and (min-width: 768px) {
@@ -95,9 +94,12 @@
   padding: 0 15px;
   background-color: transparent;
 
-  &:hover, &:focus, &:active, &:focus:active {
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus:active {
     @include themify($themes) {
-      background-color: themed('colorHover');
+      background-color: themed("colorHover");
     }
   }
 
@@ -110,7 +112,9 @@
   }
 }
 
-.topbar__avatar-img, .topbar__avatar-name, .topbar__icon {
+.topbar__avatar-img,
+.topbar__avatar-name,
+.topbar__icon {
   margin: auto 0;
 }
 
@@ -128,7 +132,7 @@
   margin-left: 10px;
 
   @include themify($themes) {
-    color: themed('colorText');
+    color: themed("colorText");
   }
 }
 
@@ -148,7 +152,7 @@
   margin-top: 0;
 
   @include themify($themes) {
-    background: themed('colorBackground');
+    background: themed("colorBackground");
   }
 
   button {
@@ -156,7 +160,7 @@
 
     &:hover {
       @include themify($themes) {
-        background-color: themed('colorHover');
+        background-color: themed("colorHover");
       }
     }
   }
@@ -185,7 +189,7 @@
   cursor: pointer;
 
   @include themify($themes) {
-    color: themed('colorText');
+    color: themed("colorText");
   }
 
   &:before {
@@ -202,7 +206,7 @@
 
   &:hover {
     @include themify($themes) {
-      background-color: themed('colorHover');
+      background-color: themed("colorHover");
     }
 
     &:before {
@@ -223,7 +227,7 @@
   line-height: 13px;
 
   @include themify($themes) {
-    color: themed('colorIcon');
+    color: themed("colorIcon");
   }
 }
 
@@ -231,7 +235,7 @@
   margin: 15px 0;
 
   @include themify($themes) {
-    border-top: 1px solid themed('colorBorder');
+    border-top: 1px solid themed("colorBorder");
   }
 }
 
@@ -270,7 +274,7 @@
   z-index: 101;
 
   @include themify($themes) {
-    background: themed('colorBackground');
+    background: themed("colorBackground");
   }
 
   &.topbar__collapse-content--language {
@@ -312,7 +316,7 @@
   margin: auto 0;
 
   @include themify($themes) {
-    color: themed('colorText');
+    color: themed("colorText");
   }
 
   &:not(:last-child) {
@@ -346,7 +350,7 @@
   align-items: center;
 
   @include themify($themes) {
-    border-bottom: 1px solid themed('colorBorder');
+    border-bottom: 1px solid themed("colorBorder");
   }
 }
 
@@ -359,7 +363,7 @@
   flex-wrap: wrap;
 
   @include themify($themes) {
-    border-bottom: 1px solid themed('colorBorder');
+    border-bottom: 1px solid themed("colorBorder");
   }
 }
 
@@ -449,13 +453,12 @@
   transition: all 0.3s;
 
   @include themify($themes) {
-    color: themed('colorText');
+    color: themed("colorText");
   }
 
   &:hover {
-
     @include themify($themes) {
-      background-color: themed('colorHover');
+      background-color: themed("colorHover");
     }
   }
 
@@ -467,7 +470,6 @@
   }
 
   &.topbar__btn--new {
-
     .topbar__btn-new-label {
       position: absolute;
       right: 9px;
@@ -538,17 +540,19 @@
   margin: 0;
 
   @include themify($themes) {
-    color: themed('colorText');
+    color: themed("colorText");
   }
 
   &:before {
     display: none;
   }
 
-  &:hover, &:focus, &:active, &:focus:active {
-
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus:active {
     @include themify($themes) {
-      background-color: themed('colorHover');
+      background-color: themed("colorHover");
     }
   }
 
@@ -602,13 +606,12 @@
   font-size: 14px;
 
   @include themify($themes) {
-    color: themed('colorText');
+    color: themed("colorText");
   }
 
   &:hover {
-
     @include themify($themes) {
-      background-color: themed('colorHover');
+      background-color: themed("colorHover");
     }
   }
 }
@@ -617,7 +620,6 @@
   position: relative;
 
   &:hover {
-
     .topbar__submenu {
       opacity: 1;
       width: auto;
@@ -633,7 +635,7 @@
   line-height: 14px;
 
   @include themify($themes) {
-    color: themed('colorIcon');
+    color: themed("colorIcon");
   }
 }
 
@@ -649,15 +651,13 @@
   overflow: hidden;
 
   @include themify($themes) {
-    background-color: themed('colorHover');
+    background-color: themed("colorHover");
   }
 
   .topbar__link {
-
     &:hover {
-
       @include themify($themes) {
-        background-color: themed('colorBackground');
+        background-color: themed("colorBackground");
       }
     }
   }
@@ -682,7 +682,7 @@
   padding-right: 46px;
 
   @include themify($themes) {
-    background-color: themed('colorBackgroundBody');
+    background-color: themed("colorBackgroundBody");
   }
 
   &.topbar__search-field--open {
@@ -711,15 +711,13 @@
   right: 0;
 
   &:hover {
-
     @include themify($themes) {
-      background-color: themed('colorBackgroundBody');
+      background-color: themed("colorBackgroundBody");
     }
   }
 }
 
 @media screen and (min-width: 480px) {
-
   .topbar__avatar-name {
     display: block;
   }
@@ -731,9 +729,7 @@
 }
 
 @media screen and (min-width: 576px) {
-
   .topbar__button {
-
     &.topbar__button--desktop {
       display: block;
     }
@@ -744,7 +740,6 @@
   }
 
   .topbar.topbar--navigation {
-
     .topbar__button.topbar__button--mobile {
       display: block;
     }
@@ -752,20 +747,17 @@
 }
 
 @media screen and (min-width: 768px) {
-
   .topbar__search {
     display: flex;
   }
 }
 
 @media screen and (min-width: 992px) {
-
   .topbar__nav {
     display: flex;
   }
 
   .topbar.topbar--navigation {
-
     .topbar__logo {
       margin-left: 15px;
       display: block;
@@ -786,9 +778,7 @@
 }
 
 @media screen and (min-width: 1200px) {
-
   .topbar.topbar--navigation {
-
     .topbar__avatar-name {
       display: block;
     }
@@ -796,8 +786,8 @@
 }
 
 @media screen and (min-width: 1580px) {
-
-  .topbar__nav-dropdown-toggle, .topbar__nav-link {
+  .topbar__nav-dropdown-toggle,
+  .topbar__nav-link {
     width: 240px;
   }
 }

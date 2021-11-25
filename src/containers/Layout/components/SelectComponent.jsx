@@ -15,11 +15,16 @@ function SelectComponent(props) {
     <FormGroup row>
       <Label sm={2}>{props.label}</Label>
       <Col sm={10}>
-        <Input name="select" type="select" onChange={(e) => onChangeValue(e)}>
+        <Input
+          name="select"
+          type="select"
+          defaultValue={0}
+          onChange={(e) => onChangeValue(e)}
+        >
           <option value={0}>{props.placeholder}</option>
-          <option value={0}>Parent A</option>
-          <option value={1}>Parent B</option>
-          <option value={2}>Parent C</option>
+          {props.data.map((item) => (
+            <option value={item.value}>{item.label}</option>
+          ))}
         </Input>
       </Col>
     </FormGroup>

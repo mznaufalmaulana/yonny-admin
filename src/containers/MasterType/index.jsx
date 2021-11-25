@@ -13,7 +13,6 @@ const MasterType = () => (
       </Col>
     </Row>
     <Row>
-      {/* <Index /> */}
       <Route exact path="/master/type/edit/:id" component={Edit} />
       <Route exact path="/master/type/add" component={Add} />
       <Route exact path="/master/type" component={List} />

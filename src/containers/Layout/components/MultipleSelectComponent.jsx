@@ -11,7 +11,7 @@ function MultipleSelectComponent(props) {
   }, [value]);
 
   function onChangeValue(e) {
-    setValue(e.target.value);
+    setValue(e);
   }
 
   const Index = (
@@ -21,6 +21,7 @@ function MultipleSelectComponent(props) {
         <Select
           closeMenuOnSelect={false}
           components={animatedComponents}
+          onChange={onChangeValue}
           isMulti
           options={props.data}
         />

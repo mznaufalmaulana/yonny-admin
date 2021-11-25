@@ -13,7 +13,7 @@ import API from "../../../services";
 import InputComponent from "../../Layout/components/InputComponent";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 
-function Add() {
+function Index(props) {
   const [type, setType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState(false);
@@ -93,4 +93,4 @@ function Add() {
   return Index;
 }
 
-export default Add;
+export default Index;

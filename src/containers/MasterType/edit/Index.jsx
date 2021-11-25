@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -7,8 +6,6 @@ import {
   Col,
   Form,
   FormGroup,
-  Input,
-  Label,
   Row,
   Spinner,
 } from "reactstrap";
@@ -16,23 +13,19 @@ import API from "../../../services";
 import InputComponent from "../../Layout/components/InputComponent";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 
-function Edit() {
+function Index(props) {
   const [type, setType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
-  const { id } = useParams();
 
   function onChangeType(val) {
     setType(val);
   }
 
   function save() {
-    let payload = JSON.stringify({
-      type_name: type,
-    });
     setIsLoading(true);
-    API.put(`product-type/${id}/update`, payload).then((result) => {
+    API.post(`product-type/store?type_name=${type}`).then((result) => {
       if (result.message === "success") {
         setIsLoading(false);
         setAlert(true);
@@ -45,14 +38,6 @@ function Edit() {
       }
     });
   }
-
-  useEffect(() => {
-    API.get(`product-type/${id}`).then((result) => {
-      if (result.message === "success") {
-        setType(result.data.type_name);
-      }
-    });
-  }, []);
 
   const Index = (
     <Col md={12}>
@@ -72,18 +57,12 @@ function Edit() {
             </Col>
           </Row>
           <Form id="form">
-            <FormGroup row>
-              <Label sm={2}>Category Name</Label>
-              <Col sm={10}>
-                <Input
-                  name="category_name"
-                  placeholder="Input the Category Name"
-                  type="text"
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}
-                />
-              </Col>
-            </FormGroup>
+            <InputComponent
+              label="Type Name"
+              type="text"
+              placeholder="Input the Type Name"
+              onChangeValue={(val) => onChangeType(val)}
+            />
           </Form>
           <FormGroup row>
             <Col
@@ -114,4 +93,4 @@ function Edit() {
   return Index;
 }
 
-export default Edit;
+export default Index;

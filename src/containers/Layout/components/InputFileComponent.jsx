@@ -9,14 +9,20 @@ function InputFileComponent(props) {
   }, [value]);
 
   function onChangeValue(e) {
-    setValue(e.target.value);
-    props.onChangeValue(e.target.value);
+    console.log(e);
+    setValue(e.target.files);
   }
   const Index = (
     <FormGroup row>
       <Label sm={2}>{props.label}</Label>
       <Col sm={10}>
-        <Input id="exampleFile" name="file" type="file" multiple />
+        <Input
+          id="exampleFile"
+          name="file"
+          type="file"
+          onChange={onChangeValue}
+          multiple
+        />
         <FormText>Choose File Product</FormText>
       </Col>
     </FormGroup>

@@ -39,37 +39,37 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
             onClick={handleHideSidebar}
           /> */}
         </SidebarCategory>
-        {/* <SidebarLink
+        <SidebarLink
           title="Product"
           icon="store"
           route="/product/list"
           onClick={handleHideSidebar}
         />
-        <SidebarLink
+        {/* <SidebarLink
           title="Project"
           icon="cog"
           route="/project/list"
           onClick={handleHideSidebar}
-        />
-        <SidebarLink
+        /> */}
+        {/* <SidebarLink
           title="Promo"
           icon="tag"
           route="/log_in"
           onClick={handleHideSidebar}
-        />
-        <SidebarLink
+        /> */}
+        {/* <SidebarLink
           title="Contact"
           icon="phone-handset"
           route="/log_in"
           onClick={handleHideSidebar}
-        />
-        <SidebarLink
+        /> */}
+        {/* <SidebarLink
           title="Social Media"
           icon="laptop-phone"
           route="/log_in"
           onClick={handleHideSidebar}
-        />
-        <SidebarCategory title="Email" icon="inbox">
+        /> */}
+        {/* <SidebarCategory title="Email" icon="inbox">
           <SidebarLink
             title="Subscriber"
             route="/pages/one"

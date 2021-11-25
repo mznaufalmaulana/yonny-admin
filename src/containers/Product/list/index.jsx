@@ -1,18 +1,35 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
-import IndexList from "./components/Index";
+import { Button, Card, CardBody, Col, Row } from "reactstrap";
+import DataTable from "react-data-table-component";
+import { NavLink } from "react-router-dom";
 
-const ListProduct = () => (
-  <Container className="dashboard">
-    <Row>
-      <Col md={12}>
-        <h3 className="page-title">Product</h3>
-      </Col>
-    </Row>
-    <Row>
-      <IndexList />
-    </Row>
-  </Container>
-);
+function Index() {
+  const List = (
+    <Col md={12}>
+      <Card>
+        <CardBody>
+          <Row>
+            <Col>
+              <div className="card__title">
+                <h5 className="bold-text">List Data</h5>
+                <h5 className="subhead">Example subhead</h5>
+              </div>
+            </Col>
+            <Col>
+              <NavLink to="/product/add">
+                <Button className="btn btn-primary text-white float-right">
+                  + Add Data
+                </Button>
+              </NavLink>
+            </Col>
+          </Row>
+          <DataTable />
+        </CardBody>
+      </Card>
+    </Col>
+  );
 
-export default ListProduct;
+  return List;
+}
+
+export default Index;
