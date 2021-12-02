@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, CardBody, Col, Form, FormGroup, Row } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Form,
+  FormGroup,
+  Row,
+  Spinner,
+} from "reactstrap";
 import InputComponent from "../../Layout/components/InputComponent";
 import MultipleSelectComponent from "../../Layout/components/MultipleSelectComponent";
 import InputFileComponent from "../../Layout/components/InputFileComponent";
@@ -21,6 +30,7 @@ function Index() {
   const [productName, setProductName] = useState("");
   const [desc, setDesc] = useState("");
   const [type, setType] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     API.get(`product-category/list`).then((result) => {
@@ -52,30 +62,53 @@ function Index() {
   const makePayload = () => {
     let payload = new FormData();
     let cat = [];
+    let file = [];
     category.map((item) => cat.push(item.value));
-    payload.append("_method", "POST");
+    payload.append("product_type_id", type);
     payload.append("product_name", productName);
     payload.append("description", desc);
-    payload.append("product_type_id", type);
-    payload.append("product_category_id", cat);
-    payload.append("product_photo[]", files);
+    payload.append("product_category_id[]", cat);
+    payload.append("product_photo[]", "");
+    payload.append("is_active", 1);
+
+    setIsLoading(true);
     save(payload);
   };
 
   const save = async (payload) => {
     let resp = await API.uploadFile(`product/store`, payload, "POST");
-    handleMessage(resp);
+    uploadImage(resp.data.product_id);
+  };
+
+  const uploadImage = async (id) => {
+    try {
+      let resp = "";
+      for (let i = 0; i < files.length; i++) {
+        let payload = new FormData();
+        payload.append("photo", files[i]);
+        resp = await API.uploadFile(
+          `product/${id}/store-product-photo`,
+          payload,
+          "POST"
+        );
+      }
+      handleMessage(resp);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleMessage = (resp) => {
     console.log(resp);
     if (resp.message === "success") {
+      setIsLoading(false);
       setAlert({
         open: true,
         message: "Data was Added",
         status: "success",
       });
     } else {
+      setIsLoading(false);
       setAlert({
         open: true,
         message: resp.message,
@@ -102,7 +135,7 @@ function Index() {
               </div>
             </Col>
           </Row>
-          <Form>
+          <Form id="form">
             <InputComponent
               label="Product Name"
               type="text"
@@ -143,8 +176,14 @@ function Index() {
               <Button
                 className="btn btn-primary text-white"
                 onClick={makePayload}
+                disabled={isLoading}
               >
                 Save
+                {isLoading && (
+                  <>
+                    &nbsp; <Spinner size="sm" />{" "}
+                  </>
+                )}
               </Button>
             </Col>
           </FormGroup>

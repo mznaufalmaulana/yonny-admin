@@ -5,11 +5,16 @@ import MainWrapper from "./MainWrapper";
 import LogIn from "../LogIn/index";
 import ExamplePageOne from "../Example/index";
 import ExamplePageTwo from "../ExampleTwo/index";
-import AddProject from "../Project/add";
-import ListProject from "../Project/list";
 import IndexMasterProduct from "../MasterProduct";
 import IndexMasterType from "../MasterType";
 import IndexProduct from "../Product/";
+import IndexProject from "../Project/";
+import IndexRegion from "../Region/";
+import IndexSocialMedia from "../SocialMedia/";
+import IndexContact from "../Contact/";
+import Register from "../Register";
+import ProtectedRoute from "./ProtectedRoute";
+import Home from "../Home";
 
 const Pages = () => (
   <Switch>
@@ -18,22 +23,21 @@ const Pages = () => (
   </Switch>
 );
 
-const Project = () => (
-  <Switch>
-    <Route path="/project/add" component={AddProject} />
-    <Route path="/project/list" component={ListProject} />
-  </Switch>
-);
-
 const wrappedRoutes = () => (
   <div>
     <Layout />
     <div className="container__wrap">
       <Route path="/pages" component={Pages} />
-      <Route path="/master/product" component={IndexMasterProduct} />
-      <Route path="/master/type" component={IndexMasterType} />
-      <Route path="/product" component={IndexProduct} />
-      <Route path="/project" component={Project} />
+
+      {/* master */}
+      <ProtectedRoute path="/master/product" component={IndexMasterProduct} />
+      <ProtectedRoute path="/master/type" component={IndexMasterType} />
+      <ProtectedRoute path="/master/region" component={IndexRegion} />
+      <ProtectedRoute path="/product" component={IndexProduct} />
+      <ProtectedRoute path="/project" component={IndexProject} />
+      <ProtectedRoute path="/social-media" component={IndexSocialMedia} />
+      <ProtectedRoute path="/contact" component={IndexContact} />
+      <ProtectedRoute path="/home" component={Home} />
     </div>
   </div>
 );
@@ -44,6 +48,7 @@ const Router = () => (
       <Switch>
         <Route exact path="/" component={LogIn} />
         <Route exact path="/log_in" component={LogIn} />
+        <Route exact path="/register" component={Register} />
         <Route path="/" component={wrappedRoutes} />
       </Switch>
     </main>

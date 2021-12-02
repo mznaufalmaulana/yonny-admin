@@ -57,8 +57,8 @@ function Edit(props) {
   useEffect(() => {
     API.get(`product-category/${id}`).then((result) => {
       if (result.message === "success") {
-        setCategory(result.data.category_name);
-        setCategoryParent(result.data.category_parent);
+        setCategory(result.data[0].category_name);
+        setCategoryParent(result.data[0].category_parent);
       }
     });
   }, []);
@@ -95,13 +95,13 @@ function Edit(props) {
                 <Input
                   name="category_parent"
                   type="select"
-                  defaultValue={categoryParent}
+                  value={categoryParent}
                   onChange={(e) => {
                     setCategoryParent(e.target.value);
                   }}
                 >
                   <option value={0}>Nothing Parent Category</option>
-                  {listParent.map((data, index) => (
+                  {listParent.map((data) => (
                     <option value={data.id}>{data.category_name}</option>
                   ))}
                 </Input>

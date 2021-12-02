@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import DownIcon from 'mdi-react/ChevronDownIcon';
-import { Collapse } from 'reactstrap';
-import TopbarMenuLink from './TopbarMenuLink';
+import React, { useState } from "react";
+import DownIcon from "mdi-react/ChevronDownIcon";
+import { Collapse } from "reactstrap";
+import TopbarMenuLink from "./TopbarMenuLink";
 
 const Ava = `${process.env.PUBLIC_URL}/img/ava.png`;
 
@@ -15,7 +15,7 @@ const TopbarProfile = () => {
     <div className="topbar__profile">
       <button type="button" className="topbar__avatar" onClick={setIsCollapsed}>
         <img className="topbar__avatar-img" src={Ava} alt="avatar" />
-        <p className="topbar__avatar-name">Roman Johanson</p>
+        <p className="topbar__avatar-name">Admin</p>
         <DownIcon className="topbar__icon" />
       </button>
       {isCollapsed && (
@@ -28,9 +28,9 @@ const TopbarProfile = () => {
       )}
       <Collapse isOpen={isCollapsed} className="topbar__menu-wrap">
         <div className="topbar__menu">
-          <TopbarMenuLink title="Page one" icon="list" path="/pages/one" />
+          {/* <TopbarMenuLink title="Page one" icon="list" path="/pages/one" />
           <TopbarMenuLink title="Page two" icon="inbox" path="/pages/two" />
-          <div className="topbar__menu-divider" />
+          <div className="topbar__menu-divider" /> */}
           <TopbarMenuLink title="Log Out" icon="exit" path="/" />
         </div>
       </Collapse>

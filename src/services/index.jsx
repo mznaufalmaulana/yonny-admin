@@ -1,6 +1,5 @@
 const isProd = false;
-const urlDev = "http://128.199.218.77/admin";
-// const urlDev = "http://178.128.99.51:81/admin";
+const urlDev = "http://178.128.99.51:81/admin";
 const urlProd = "http://#";
 
 const Root = isProd ? urlProd : urlDev;
@@ -13,7 +12,7 @@ const get = (path) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          // Authorization: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token"),
         },
       })
         .then((result) => result.json())
@@ -39,7 +38,9 @@ const post = (path, param) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          // Authorization: localStorage.getItem("token"),
+          "XSRF-TOKEN":
+            "eyJpdiI6IlRwczJXSGdCOWdoNUlLUytnOFpyS0E9PSIsInZhbHVlIjoiUUtDeWFSUTlpdkNvN1VlVytTMThYRW1iQzhqTHlSRjA4Q2NCY2tKejdxNnVLSjhVVHVjQkRUdWhQOUV3eldmNEl4dHl1OXJnQS83ckxITy9ZdGhmZ1ZCTE9QRzFvMzJpTWVUd2swbHlTN0hvRURuL2dWL3lZMkNlc1F3YnI1cysiLCJtYWMiOiJiM2FkZDVhODIxOWM0NGVjM2RlMWUwNjdhOThmOTE4ZjM5Yzc4MWFiMWQ3ZjViMDczNmVkMzcwMGEwYjJlMDJjIn0%3D; expires=Fri, 26-Nov-2021 17:22:35 GMT; Max-Age=7200; path=/; samesite=lax",
+          Authorization: localStorage.getItem("token"),
         },
         body: param,
       })
@@ -66,7 +67,7 @@ const deleteData = (path, param) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          // Authorization: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token"),
         },
         body: param,
       })
@@ -93,7 +94,7 @@ const put = (path, param) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          // Authorization: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token"),
         },
         body: param,
       })
@@ -118,9 +119,15 @@ const uploadFile = (path, param, method) => {
       fetch(`${Root}/${path}`, {
         method: method,
         headers: {
-          "content-type": "multipart/form-data",
+          Accept: "/",
+          // 'accept':'application/json',
           "Access-Control-Allow-Origin": "*",
-          // Authorization: localStorage.getItem("authToken"),
+          "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE",
+          "Access-Control-Allow-Headers":
+            "origin,X-Requested-With,content-type,accept",
+          // "content-type": "x-www-form-urlencoded",
+          // "Access-Control-Allow-Origin": "*",
+          Authorization: localStorage.getItem("token"),
         },
         body: param,
       })
@@ -147,7 +154,7 @@ const download = (path) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          // Authorization: localStorage.getItem("authToken"),
+          Authorization: localStorage.getItem("token"),
         },
       }).then(
         () => {

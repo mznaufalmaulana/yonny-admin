@@ -11,12 +11,12 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
   return (
     <div className="sidebar__content">
       <ul className="sidebar__block">
-        {/* <SidebarLink
+        <SidebarLink
           title="Dashboard"
           icon="home"
-          route="/log_in"
+          route="/home"
           onClick={handleHideSidebar}
-        /> */}
+        />
         <SidebarCategory title="Master" icon="database">
           <SidebarLink
             title="Category"
@@ -28,12 +28,12 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
             route="/master/type"
             onClick={handleHideSidebar}
           />
-          {/* <SidebarLink
+          <SidebarLink
             title="Region"
             route="/master/region"
             onClick={handleHideSidebar}
           />
-          <SidebarLink
+          {/* <SidebarLink
             title="User"
             route="/master/user"
             onClick={handleHideSidebar}
@@ -45,30 +45,30 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
           route="/product/list"
           onClick={handleHideSidebar}
         />
-        {/* <SidebarLink
+        <SidebarLink
           title="Project"
           icon="cog"
           route="/project/list"
           onClick={handleHideSidebar}
-        /> */}
+        />
         {/* <SidebarLink
           title="Promo"
           icon="tag"
           route="/log_in"
           onClick={handleHideSidebar}
         /> */}
-        {/* <SidebarLink
+        <SidebarLink
           title="Contact"
           icon="phone-handset"
-          route="/log_in"
+          route="/contact"
           onClick={handleHideSidebar}
-        /> */}
-        {/* <SidebarLink
+        />
+        <SidebarLink
           title="Social Media"
           icon="laptop-phone"
-          route="/log_in"
+          route="/social-media"
           onClick={handleHideSidebar}
-        /> */}
+        />
         {/* <SidebarCategory title="Email" icon="inbox">
           <SidebarLink
             title="Subscriber"

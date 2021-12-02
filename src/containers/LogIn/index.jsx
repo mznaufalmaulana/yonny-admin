@@ -1,20 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import FacebookIcon from 'mdi-react/FacebookIcon';
-import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
-import LogInForm from './components/LogInForm';
+import React from "react";
+import { Link } from "react-router-dom";
+import FacebookIcon from "mdi-react/FacebookIcon";
+import GooglePlusIcon from "mdi-react/GooglePlusIcon";
+import LogInForm from "./components/LogInForm";
 
 const LogIn = () => (
   <div className="account">
     <div className="account__wrapper">
       <div className="account__card">
         <div className="account__head">
-          <h3 className="account__title">Welcome to
-            <span className="account__logo"> Easy
-              <span className="account__logo-accent">DEV</span>
+          <h3 className="account__title">
+            Welcome to
+            <span className="account__logo">
+              {" "}
+              Batu
+              <span className="account__logo-accent">Yonny</span>
             </span>
           </h3>
-          <h4 className="account__subhead subhead">Start your business easily</h4>
+          <h4 className="account__subhead subhead">
+            Start your business easily
+          </h4>
         </div>
         <LogInForm onSubmit />
         <div className="account__or">
@@ -24,12 +29,14 @@ const LogIn = () => (
           <Link
             className="account__social-btn account__social-btn--facebook"
             to="/pages/one"
-          ><FacebookIcon />
+          >
+            <FacebookIcon />
           </Link>
           <Link
             className="account__social-btn account__social-btn--google"
             to="/pages/one"
-          ><GooglePlusIcon />
+          >
+            <GooglePlusIcon />
           </Link>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Route } from "react-router";
 import { Col, Container, Row } from "reactstrap";
 import List from "./list/Index";
 import Add from "./add/Index";
+import Edit from "./edit/Index";
 
 const IndexProduct = () => (
   <Container className="dashboard">
@@ -14,6 +15,7 @@ const IndexProduct = () => (
     <Row>
       <Route exact path="/product/list" component={List} />
       <Route exact path="/product/add" component={Add} />
+      <Route exact path="/product/edit/:id" component={Edit} />
     </Row>
   </Container>
 );

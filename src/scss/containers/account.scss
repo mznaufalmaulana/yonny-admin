@@ -6,7 +6,7 @@
   overflow-y: auto;
 
   @include themify($themes) {
-    background: themed('colorBackgroundBody');
+    background: themed("colorBackgroundBody");
   }
 
   &.account--photo {
@@ -18,15 +18,18 @@
       color: #ffffff;
     }
 
-    .form__form-group-icon, .form__form-group-button {
+    .form__form-group-icon,
+    .form__form-group-button {
       background: transparent;
     }
 
-    .form__form-group-icon, input:not(:last-child) {
+    .form__form-group-icon,
+    input:not(:last-child) {
       border-right: none;
     }
 
-    .form__form-group-button, input {
+    .form__form-group-button,
+    input {
       border-left: none;
     }
 
@@ -62,9 +65,8 @@
 }
 
 .account__card {
-
   @include themify($themes) {
-    background-color: themed('colorBackground');
+    background-color: themed("colorBackground");
   }
 
   background-color: #ffffff;
@@ -143,7 +145,8 @@
   margin-bottom: 20px;
   position: relative;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     content: "";
     height: 1px;
     width: calc(50% - 90px);
@@ -205,7 +208,7 @@
 .account__head {
   margin-bottom: 30px;
   padding-left: 10px;
-  border-left: 4px solid $color-blue;
+  border-left: 4px solid $color-accent;
 }
 
 .account__logo {
@@ -213,7 +216,7 @@
 }
 
 .account__logo-accent {
-  color: $color-blue;
+  color: $color-accent;
 }
 
 .account__have-account {
@@ -232,14 +235,12 @@
 }
 
 @media screen and (max-width: 520px) {
-
   .account__card {
     padding: 35px 30px;
   }
 }
 
 @media screen and (max-width: 425px) {
-
   .account__btns {
     flex-wrap: wrap;
   }

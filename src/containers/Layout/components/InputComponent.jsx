@@ -14,7 +14,7 @@ function InputComponent(props) {
       <Label sm={2}>{props.label}</Label>
       <Col sm={10}>
         <Input
-          name="email"
+          name="text"
           placeholder={props.placeholder}
           type={props.type}
           onChange={(e) => onChangeValue(e)}

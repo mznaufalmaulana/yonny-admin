@@ -107,7 +107,7 @@ function List() {
               pagination
               // paginationServer
               paginationTotalRows={data.length}
-              paginationPerPage={5}
+              paginationPerPage={10}
               highlightOnHover
               progressPending={isLoading}
               paginationComponentOptions={{

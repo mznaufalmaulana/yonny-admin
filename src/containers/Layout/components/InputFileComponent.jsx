@@ -18,7 +18,7 @@ function InputFileComponent(props) {
       <Col sm={10}>
         <Input
           id="exampleFile"
-          name="file"
+          name="product_photo"
           type="file"
           onChange={onChangeValue}
           multiple

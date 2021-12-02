@@ -1,22 +1,39 @@
-import React, { memo, useState } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import PropTypes from 'prop-types';
+import React, { memo, useState } from "react";
+import {
+  EditorState,
+  convertToRaw,
+  convertFromHTML,
+  ContentState,
+} from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import PropTypes from "prop-types";
 
 const ToolbarOptions = {
-  options: ['inline', 'blockType', 'list', 'textAlign', 'link', 'emoji', 'image', 'history'],
+  options: ["inline", "blockType", "list", "textAlign", "link", "history"],
   inline: {
-    options: ['bold', 'italic', 'underline'],
+    options: ["bold", "italic", "underline"],
   },
 };
 
-const TextEditorTwo = memo(({ onChange }) => {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+const TextEditorTwo = memo(({ onChange, initVal }) => {
+  const _getInitValue = () => {
+    if (initVal) {
+      const contentBlocks = convertFromHTML("<p>Hello world</p>");
+      const contentState = ContentState.createFromBlockArray(contentBlocks);
+      return convertToRaw(contentState);
+    } else {
+      return EditorState.createEmpty();
+    }
+  };
+  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [editorState, setEditorState] = useState(_getInitValue());
 
   const onEditorStateChange = (items) => {
     setEditorState(items);
-    if (onChange) { onChange(draftToHtml(convertToRaw(items.getCurrentContent()))); }
+    if (onChange) {
+      onChange(draftToHtml(convertToRaw(items.getCurrentContent())));
+    }
   };
 
   return (
@@ -27,6 +44,7 @@ const TextEditorTwo = memo(({ onChange }) => {
         editorClassName="demo-editor"
         onEditorStateChange={onEditorStateChange}
         toolbar={ToolbarOptions}
+        rawContentState={editorState}
       />
     </div>
   );
