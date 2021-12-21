@@ -34,7 +34,7 @@ function Index() {
         for (let i = 0; i < length; i++) {
           if (result.data[i]) {
             photo.push({
-              id: result.data[i].id,
+              id: result.data[i].id.toString(),
               photo_name: `${API.urlStorage}${result.data[i].photo_name}`,
             });
           } else {
@@ -96,6 +96,7 @@ function Index() {
 
   const uploadImage = async () => {
     try {
+      setIsLoading(true);
       let resp = "";
       for (let i = 0; i < files.length; i++) {
         let payload = new FormData();
@@ -116,6 +117,7 @@ function Index() {
       }
       handleMessage(resp);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
