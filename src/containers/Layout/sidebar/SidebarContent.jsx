@@ -51,12 +51,12 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
           route="/project/list"
           onClick={handleHideSidebar}
         />
-        {/* <SidebarLink
+        <SidebarLink
           title="Promo"
           icon="tag"
-          route="/log_in"
+          route="/promo/list"
           onClick={handleHideSidebar}
-        /> */}
+        />
         <SidebarLink
           title="Contact"
           icon="phone-handset"
@@ -69,18 +69,18 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
           route="/social-media"
           onClick={handleHideSidebar}
         />
-        {/* <SidebarCategory title="Email" icon="inbox">
+        <SidebarCategory title="Email" icon="inbox">
           <SidebarLink
             title="Subscriber"
-            route="/pages/one"
+            route="/email/list"
             onClick={handleHideSidebar}
           />
           <SidebarLink
             title="Email Chat"
-            route="/pages/two"
+            route="/email/chat/list"
             onClick={handleHideSidebar}
           />
-        </SidebarCategory> */}
+        </SidebarCategory>
       </ul>
       {/* <ul className="sidebar__block">
         <SidebarLink

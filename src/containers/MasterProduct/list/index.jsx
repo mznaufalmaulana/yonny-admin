@@ -47,6 +47,10 @@ function List() {
       cell: (row) => row.category_name,
     },
     {
+      name: "Parent Category",
+      cell: (row) => (row.category_parent ? row.category_parent : "-"),
+    },
+    {
       name: "",
       width: "150px",
       cell: (row) => (

@@ -64,7 +64,7 @@ function Edit(props) {
   }, []);
 
   useEffect(() => {
-    API.get(`product-category/list`).then((result) => {
+    API.get(`product-category/list-parent`).then((result) => {
       if (result.message === "success") {
         setListParent(result.data);
       }

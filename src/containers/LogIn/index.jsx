@@ -13,8 +13,8 @@ const LogIn = () => (
             Welcome to
             <span className="account__logo">
               {" "}
-              Batu
-              <span className="account__logo-accent">Yonny</span>
+              BATU
+              <span className="account__logo-accent">YONNY</span>
             </span>
           </h3>
           <h4 className="account__subhead subhead">
@@ -22,7 +22,7 @@ const LogIn = () => (
           </h4>
         </div>
         <LogInForm onSubmit />
-        <div className="account__or">
+        {/* <div className="account__or">
           <p>Or Easily Using</p>
         </div>
         <div className="account__social">
@@ -38,7 +38,7 @@ const LogIn = () => (
           >
             <GooglePlusIcon />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   </div>

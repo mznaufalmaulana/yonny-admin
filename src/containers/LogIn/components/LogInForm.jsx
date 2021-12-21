@@ -108,15 +108,6 @@ const LogInForm = ({ handleSubmit }) => {
             <a href="/">Forgot a password?</a>
           </div>
         </div>
-        <div className="form__form-group">
-          <div className="form__form-group-field">
-            <Field
-              name="remember_me"
-              component={renderCheckBoxField}
-              label="Remember me"
-            />
-          </div>
-        </div>
         <Button
           className="btn btn-primary account__btn account__btn--small text-white"
           onClick={make}

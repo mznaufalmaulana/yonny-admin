@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -20,6 +20,7 @@ function Add() {
   const [category, setCategory] = useState("");
   const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
+  const [listParent, setListParent] = useState([]);
 
   function onChangeCategoryParent(val) {
     setCategoryParent(val);
@@ -47,6 +48,21 @@ function Add() {
     });
   }
 
+  useEffect(() => {
+    API.get(`product-category/list-parent`).then((result) => {
+      if (result.message === "success") {
+        let list = [];
+        result.data.map((item) =>
+          list.push({
+            value: item.id,
+            label: item.category_name,
+          })
+        );
+        setListParent(list);
+      }
+    });
+  }, []);
+
   const Index = (
     <Col md={12}>
       <Card>
@@ -70,6 +86,7 @@ function Add() {
               type="text"
               placeholder="Nothing Parent Category"
               onChangeValue={(val) => onChangeCategoryParent(val)}
+              data={listParent}
             />
             <InputComponent
               label="Category Name"

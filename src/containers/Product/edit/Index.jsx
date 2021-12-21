@@ -8,8 +8,13 @@ import {
   FormGroup,
   Input,
   Label,
+  Nav,
+  NavItem,
+  NavLink,
   Row,
   Spinner,
+  TabContent,
+  TabPane,
 } from "reactstrap";
 import API from "../../../services";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
@@ -17,6 +22,9 @@ import { useParams } from "react-router";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import TextEditorTwo from "../../../shared/components/text-editor/TextEditor";
+import FormData from "../../../containers/Product/edit/components/Data";
+import ImageData from "../../../containers/Product/edit/components/Image";
+import classnames from "classnames";
 
 function Index() {
   const [alert, setAlert] = useState({
@@ -30,6 +38,12 @@ function Index() {
   const [category, setCategory] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState("");
+
+  const [activeTab, setActiveTab] = useState("1");
+  const toggle = (tab) => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -123,117 +137,34 @@ function Index() {
               </div>
             </Col>
           </Row>
-          <Form id="form">
-            <FormGroup row>
-              <Label sm={2}>Product Name</Label>
-              <Col sm={10}>
-                <Input
-                  name="text"
-                  placeholder="Input the Product's Name"
-                  type="text"
-                  value={data?.product_name}
-                  onChange={(e) =>
-                    setData({ ...data, product_name: e.target.value })
-                  }
-                />
-              </Col>
-            </FormGroup>
-
-            <FormGroup row>
-              <Label sm={2}>Description</Label>
-              <Col sm={10}>
-                <TextEditorTwo
-                  onChange={(val) => setData({ ...data, description: val })}
-                />
-              </Col>
-            </FormGroup>
-
-            <FormGroup row>
-              <Label sm={2}>Type</Label>
-              <Col sm={10}>
-                <Input
-                  name="select"
-                  type="select"
-                  value={data.type_id}
-                  onChange={(e) =>
-                    setData({ ...data, type_id: e.target.value })
-                  }
+          <div className="tabs">
+            <Nav tabs>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: activeTab === "1" })}
+                  onClick={() => toggle("1")}
                 >
-                  <option value={0}>Select</option>
-                  {listType.map((item) => (
-                    <option value={item.value}>{item.label}</option>
-                  ))}
-                </Input>
-              </Col>
-            </FormGroup>
-
-            <FormGroup row>
-              <Label sm={2}>Category Product</Label>
-              <Col sm={10}>
-                <Select
-                  defaultValue={[listCategory[0], listCategory[1]]}
-                  isMulti
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  onChange={(e) => setCategory(e)}
-                  options={listCategory}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                />
-              </Col>
-            </FormGroup>
-
-            <FormGroup row>
-              <Label sm={2}>Share Count</Label>
-              <Col sm={10}>
-                <Input
-                  name="text"
-                  placeholder="Input the Share Count"
-                  type="text"
-                  value={data?.share_count}
-                  onChange={(e) =>
-                    setData({ ...data, product_name: e.target.value })
-                  }
-                />
-              </Col>
-            </FormGroup>
-
-            <FormGroup row>
-              <Label sm={2}>Seen Count</Label>
-              <Col sm={10}>
-                <Input
-                  name="text"
-                  placeholder="Input the Seen Count"
-                  type="text"
-                  value={data?.seen_count}
-                  onChange={(e) =>
-                    setData({ ...data, product_name: e.target.value })
-                  }
-                />
-              </Col>
-            </FormGroup>
-          </Form>
-          <FormGroup row>
-            <Col
-              sm={{
-                offset: 2,
-                size: 10,
-              }}
-            >
-              <Button
-                className="btn btn-primary text-white"
-                onClick={makePayload}
-                disabled={isLoading}
-              >
-                Save
-                {isLoading && (
-                  <>
-                    &nbsp; <Spinner size="sm" />{" "}
-                  </>
-                )}
-              </Button>
-            </Col>
-          </FormGroup>
+                  Data
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: activeTab === "2" })}
+                  onClick={() => toggle("2")}
+                >
+                  Media
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </div>
+          <TabContent activeTab={activeTab}>
+            <TabPane tabId="1">
+              <FormData />
+            </TabPane>
+            <TabPane tabId="2">
+              <ImageData />
+            </TabPane>
+          </TabContent>
         </CardBody>
       </Card>
     </Col>

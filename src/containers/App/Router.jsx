@@ -15,6 +15,8 @@ import IndexContact from "../Contact/";
 import Register from "../Register";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "../Home";
+import IndexEmail from "../Email";
+import IndexPromo from "../Promo";
 
 const Pages = () => (
   <Switch>
@@ -38,6 +40,8 @@ const wrappedRoutes = () => (
       <ProtectedRoute path="/social-media" component={IndexSocialMedia} />
       <ProtectedRoute path="/contact" component={IndexContact} />
       <ProtectedRoute path="/home" component={Home} />
+      <ProtectedRoute path="/email" component={IndexEmail} />
+      <ProtectedRoute path="/promo" component={IndexPromo} />
     </div>
   </div>
 );

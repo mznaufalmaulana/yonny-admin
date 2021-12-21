@@ -10,14 +10,10 @@ import {
   Spinner,
 } from "reactstrap";
 import InputComponent from "../../Layout/components/InputComponent";
-import MultipleSelectComponent from "../../Layout/components/MultipleSelectComponent";
 import InputFileComponent from "../../Layout/components/InputFileComponent";
-import TextEditorComponent from "../../Layout/components/TextEditorComponent";
 import SelectComponent from "../../Layout/components/SelectComponent";
 import API from "../../../services";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
-import axios from "axios";
-import FileBase64 from "react-file-base64";
 
 function Index() {
   const [alert, setAlert] = useState({
@@ -27,41 +23,28 @@ function Index() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState("");
-  const [projectName, setProjectName] = useState("");
-  const [desc, setDesc] = useState("");
+  const [order, setOrder] = useState("");
+  const [link, setLink] = useState("");
+  const [isHeadline, setIsHeadline] = useState("");
+  const type = [
+    { value: 0, label: "Non Headline" },
+    { value: 1, label: "Headline" },
+  ];
 
   const makePayload = () => {
     let payload = new FormData();
-    payload.append("project_name", projectName);
-    payload.append("description", desc);
-    payload.append("project_photo[]", "");
-    payload.append("is_active", 1);
+    payload.append("order", order);
+    payload.append("link", link);
+    payload.append("photo_name", files[0]);
+    payload.append("is_headline", isHeadline);
 
     setIsLoading(true);
     save(payload);
   };
 
   const save = async (payload) => {
-    let resp = await API.uploadFile(`project/store`, payload, "POST");
-    uploadImage(resp.data.project_id);
-  };
-
-  const uploadImage = async (id) => {
-    try {
-      let resp = "";
-      for (let i = 0; i < files.length; i++) {
-        let payload = new FormData();
-        payload.append("photo", files[i]);
-        resp = await API.uploadFile(
-          `project/${id}/store-project-photo`,
-          payload,
-          "POST"
-        );
-      }
-      handleMessage(resp);
-    } catch (error) {
-      console.log(error);
-    }
+    let resp = await API.uploadFile(`promo/store`, payload, "POST");
+    handleMessage(resp);
   };
 
   const handleMessage = (resp) => {
@@ -95,28 +78,36 @@ function Index() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">Add Data Project</h5>
+                <h5 className="bold-text">Add Data</h5>
                 <h5 className="subhead">Example subhead</h5>
               </div>
             </Col>
           </Row>
           <Form id="form">
             <InputComponent
-              label="Project Name"
+              label="Order"
               type="text"
-              placeholder="Input the Project Name"
-              onChangeValue={(val) => setProjectName(val)}
+              placeholder="Input the Promo's Order"
+              onChangeValue={(val) => setOrder(val)}
             />
 
-            <TextEditorComponent
-              label="Description"
-              onChangeValue={(val) => setDesc(val)}
+            <InputComponent
+              label="Link"
+              type="text"
+              placeholder="Input the Promo's Link"
+              onChangeValue={(val) => setLink(val)}
+            />
+
+            <SelectComponent
+              label="Type"
+              placeholder="Select Type"
+              data={type}
+              onChangeValue={(val) => setIsHeadline(val)}
             />
 
             <InputFileComponent
               label="Photo Project"
               onChangeValue={(val) => setFiles(val)}
-              caption="Choose Max. 3 Files"
             />
           </Form>
           <FormGroup row>
