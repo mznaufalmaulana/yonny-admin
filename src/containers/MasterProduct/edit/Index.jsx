@@ -78,8 +78,8 @@ function Edit(props) {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">Edit Data Master Product</h5>
-                <h5 className="subhead">Example subhead</h5>
+                <h5 className="bold-text">Edit Data Category</h5>
+                {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
           </Row>

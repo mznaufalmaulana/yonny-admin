@@ -58,6 +58,10 @@ function Index() {
           </span>
         ),
     },
+     {
+      name: "Order Number",
+      cell: (row) => row.order,
+    },
     {
       name: "",
       width: "150px",
@@ -100,8 +104,8 @@ function Index() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">List Data</h5>
-                <h5 className="subhead">Example subhead</h5>
+                <h5 className="bold-text">Data Promo</h5>
+                {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
             <Col>

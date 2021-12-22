@@ -87,8 +87,8 @@ function Index() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">List Data</h5>
-                <h5 className="subhead">Example subhead</h5>
+                <h5 className="bold-text">Data Project</h5>
+                {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
             <Col>
