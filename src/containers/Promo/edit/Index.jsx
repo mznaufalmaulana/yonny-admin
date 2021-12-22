@@ -14,9 +14,6 @@ import {
 import API from "../../../services";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 import { useParams } from "react-router";
-import makeAnimated from "react-select/animated";
-import Select from "react-select";
-import TextEditorTwo from "../../../shared/components/text-editor/TextEditor";
 
 function Index() {
   const [alert, setAlert] = useState({
@@ -177,13 +174,17 @@ function Index() {
                   }
                   alt={data?.link}
                 />
-                <Input
-                  id="exampleFile"
-                  name="product_photo"
-                  type="file"
-                  onChange={(e) => changeFile(e)}
-                  multiple
-                />
+                <div>
+                  <label className="custom-file-upload text-center">
+                    <input
+                      type="file"
+                      id="file1"
+                      onChange={(e) => changeFile(e)}
+                      accept="image/*"
+                    />
+                    {data?.photo_name ? <>Edit</> : <>Add</>}
+                  </label>
+                </div>
               </Col>
             </FormGroup>
           </Form>

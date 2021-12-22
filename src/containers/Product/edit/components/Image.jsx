@@ -97,36 +97,46 @@ function Index() {
   };
 
   const uploadImage = async () => {
-    try {
-      setIsLoading(true);
-      let resp = "";
-      for (let i = 0; i < files.length; i++) {
-        let payload = new FormData();
-        payload.append("photo", files[i].photo_name);
-        if (files[i].id.indexOf("x") > -1) {
-          resp = await API.uploadFile(
-            `product/${id}/store-product-photo`,
-            payload,
-            "POST"
-          );
-        } else {
-          resp = await API.uploadFile(
-            `product/${files[i].id}/update-product-photo`,
-            payload,
-            "POST"
-          );
-        }
+    setIsLoading(true);
+    for (let i = 0; i < files.length; i++) {
+      let payload = new FormData();
+      payload.append("photo", files[i].photo_name);
+      if (files[i].id.indexOf("x") > -1) {
+        await API.uploadFile(
+          `product/${id}/store-product-photo`,
+          payload,
+          "POST"
+        ).then((result) => handleMessage(result));
+      } else {
+        await API.uploadFile(
+          `product/${files[i].id}/update-product-photo`,
+          payload,
+          "POST"
+        ).then((result) => handleMessage(result));
       }
-      handleMessage(resp);
-    } catch (error) {
-      console.log(error);
     }
+    setIsLoading(false);
   };
 
   const deleteImage = (id) => {
-    let resp = API.deleteData(`product/${id}/delete-product-photo`);
-    handleMessage(resp);
-    getPhoto();
+    if (id.indexOf("x") > -1) {
+      const items = files.filter((item) => item.id !== id);
+      setFiles(items);
+
+      var idxDataFile = dataFile.findIndex((x) => x.id === id);
+      let updateValue = dataFile[idxDataFile];
+      updateValue["photo_name"] = "";
+
+      setDataFile([
+        ...dataFile.slice(0, idxDataFile),
+        updateValue,
+        ...dataFile.slice(idxDataFile + 1),
+      ]);
+    } else {
+      let resp = API.deleteData(`product/${id}/delete-product-photo`);
+      handleMessage(resp);
+      getPhoto();
+    }
   };
 
   const form = (
