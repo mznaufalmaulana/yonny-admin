@@ -47,7 +47,7 @@ function List() {
     },
     {
       name: "Address",
-      cell: (row) => row.address,
+      cell: (row) => row.first_address+row.second_address,
     },
     {
       name: "Phone",

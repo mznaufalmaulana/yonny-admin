@@ -14,7 +14,7 @@ function Index() {
 
   useEffect(() => {
     setIsLoading(true);
-    API.get(`project/list`).then((result) => {
+    API.get(`email/list`).then((result) => {
       if (result.message === "success") {
         setData(result.data);
         setIsLoading(false);
@@ -23,11 +23,11 @@ function Index() {
   }, [alert]);
 
   const deleteProject = () => {
-    API.deleteData(`project/${deleteData.data.id}/delete`).then((result) => {
+    API.deleteData(`email/${deleteData.data.id}/delete`).then((result) => {
       if (result.message === "success") {
         setAlert({
           open: true,
-          message: `${deleteData.data.project_name} was deleted`,
+          message: `${deleteData.data.email_address} was deleted`,
           status: "success",
         });
         setDeleteData({ open: false });
@@ -42,8 +42,12 @@ function Index() {
       cell: (row, index) => index + 1,
     },
     {
-      name: "Project Name",
-      cell: (row) => row.project_name,
+      name: "Email Address",
+      cell: (row) => row.email_address,
+    },
+    {
+      name: "Subscribe",
+      cell: (row) => row.is_subscribe,
     },
     {
       name: "",
@@ -51,7 +55,7 @@ function Index() {
       cell: (row) => (
         <>
           <NavLink
-            to={`/project/edit/${row.id}`}
+            to={`/email/edit/${row.id}`}
             className="btn-sm btn-primary mr-1"
           >
             Edit
