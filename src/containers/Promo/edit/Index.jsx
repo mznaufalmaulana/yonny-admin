@@ -51,22 +51,6 @@ function Index() {
       payload.append("photo_name", data.photo_name);
     }
 
-    // let payload = "";
-    // if (data.photo_name instanceof File) {
-    //   payload = JSON.stringify({
-    //     link: data.link,
-    //     order: data.order,
-    //     is_headline: data.is_headline,
-    //     photo_name: data.photo_name,
-    //   });
-    // } else {
-    //   payload = JSON.stringify({
-    //     link: data.link,
-    //     order: data.order,
-    //     is_headline: data.is_headline,
-    //   });
-    // }
-
     setIsLoading(true);
     save(payload);
   };

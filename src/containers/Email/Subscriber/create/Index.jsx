@@ -27,13 +27,11 @@ function Index() {
   const [emails, setEmails] = useState("");
   const [desc, setDesc] = useState("");
   const [isPromo, setIsPromo] = useState("");
-  const [listPromo, setLisPromo] = useState([
-    { value: 1, label: "promo 1" },
-    { value: 2, label: "promo 2" },
-  ]);
+  const [promoId, setPromoId] = useState("");
+  const [listPromo, setListPromo] = useState([]);
   const type = [
-    { value: 1, label: "Broadcast" },
-    { value: 2, label: "Blast Promo" },
+    { value: 1, label: "Blast Promo" },
+    { value: 2, label: "Broadcast" },
   ];
 
   useEffect(() => {
@@ -49,13 +47,27 @@ function Index() {
         setListEmail(list);
       }
     });
+    API.get(`promo/list/all`).then((result) => {
+      if (result.message === "success") {
+        let list = [];
+        result.data.map((item) =>
+          list.push({
+            value: item.id,
+            label: item.link,
+          })
+        );
+        setListPromo(list);
+      }
+    });
   }, []);
 
   const makePayload = () => {
     let email_id_list = [];
     emails.map((item) => email_id_list.push(item.value));
     let payload = JSON.stringify({
-      broadcast_message: desc,
+      promo_id: isPromo === "2" ? "" : promoId,
+      is_promo: isPromo === "1" ? 1 : 0,
+      broadcast_message: isPromo === "2" ? desc : "",
       email_id_list: email_id_list,
     });
 
@@ -112,32 +124,27 @@ function Index() {
             />
 
             <SelectComponent
-              label="promo"
-              placeholder="select promo"
+              label="Type"
+              placeholder="Select Type"
               data={type}
               onChangeValue={(val) => setIsPromo(val)}
             />
 
-            {isPromo === "1" && (
+            {isPromo === "2" && (
               <TextEditorComponent
                 label="Message"
                 onChangeValue={(val) => setDesc(val)}
               />
             )}
 
-            {isPromo === "2" && (
+            {isPromo === "1" && (
               <SelectComponent
-                label="promo"
-                placeholder="select promo"
+                label="Promo"
+                placeholder="Select Promo"
                 data={listPromo}
-                onChangeValue={(val) => console.log(val)}
+                onChangeValue={(val) => setPromoId(val)}
               />
             )}
-
-            {/* <InputFileComponent
-              label="Photo Project"
-              onChangeValue={(val) => setFiles(val)}
-            /> */}
           </Form>
           <FormGroup row>
             <Col

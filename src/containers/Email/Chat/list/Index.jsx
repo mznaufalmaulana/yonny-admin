@@ -14,7 +14,7 @@ function Index() {
 
   useEffect(() => {
     setIsLoading(true);
-    API.get(`email/list`).then((result) => {
+    API.get(`email/message`).then((result) => {
       if (result.message === "success") {
         setData(result.data);
         setIsLoading(false);
@@ -44,19 +44,6 @@ function Index() {
     {
       name: "Email Address",
       cell: (row) => row.email_address,
-    },
-    {
-      name: "Type",
-      cell: (row) =>
-        row.is_subscribe ? (
-          <span className="badge badge-pill badge-info p-2 px-4 mr-1">
-            Subscriber
-          </span>
-        ) : (
-          <span className="badge badge-pill badge-warning p-2 px-4 mr-1">
-            Non Subscriber
-          </span>
-        ),
     },
     {
       name: "",
@@ -96,13 +83,6 @@ function Index() {
                 <h5 className="bold-text">List Data</h5>
                 <h5 className="subhead">Example subhead</h5>
               </div>
-            </Col>
-            <Col>
-              <NavLink to="/email/create">
-                <Button className="btn btn-primary text-white float-right">
-                  + Create Email
-                </Button>
-              </NavLink>
             </Col>
           </Row>
           <DataTable
