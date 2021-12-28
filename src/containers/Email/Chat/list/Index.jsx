@@ -42,6 +42,10 @@ function Index() {
       cell: (row, index) => index + 1,
     },
     {
+      name: "Name",
+      cell: (row) => row.name,
+    },
+    {
       name: "Email Address",
       cell: (row) => row.email_address,
     },
@@ -51,11 +55,10 @@ function Index() {
       cell: (row) => (
         <>
           <a
-            href="#"
-            className="btn-sm btn-danger mr-1"
-            onClick={() => setDeleteData({ open: true, data: row })}
+            href={`/email/chat/detail/${row.id}`}
+            className="btn-sm btn-success mr-1"
           >
-            Delete
+            Reply
           </a>
         </>
       ),
