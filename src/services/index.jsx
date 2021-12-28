@@ -1,7 +1,11 @@
 const isProd = false;
+// API Server
 const urlDev = "http://178.128.99.51:81/admin";
-const urlStorage = "http://178.128.99.51:81/storage/";
 const urlProd = "http://#";
+
+// Link Storage and Store
+const urlStorage = "http://178.128.99.51:81/storage/";
+const urlStore = "http://178.128.99.51/";
 
 const Root = isProd ? urlProd : urlDev;
 
@@ -174,6 +178,7 @@ const download = (path) => {
 const API = {
   Root,
   urlStorage,
+  urlStore,
   post,
   deleteData,
   put,

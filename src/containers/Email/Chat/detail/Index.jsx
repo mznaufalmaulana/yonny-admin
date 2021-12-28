@@ -17,10 +17,16 @@ import SnackbarComponent from "../../../Layout/components/SnackbarComponent";
 import TextEditorComponent from "../../../Layout/components/TextEditorComponent";
 
 function Index() {
-  const [emailAddress, setEmailAddress] = useState("");
-  const [messageReply, setMessageReply] = useState("");
-  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [emailAddress, setEmailAddress] = useState("");
+  const [data, setData] = useState({
+    emailAddress: "",
+    message: "",
+    product_id: "",
+    photo_name: "",
+  });
+  const [message, setMessage] = useState("");
+  const [messageReply, setMessageReply] = useState("");
   const [alert, setAlert] = useState({
     open: true,
     message: "",
@@ -33,6 +39,12 @@ function Index() {
       if (result.message === "success") {
         setEmailAddress(result.data[0].email_address);
         setMessage(result.data[0].message);
+        setData({
+          emailAddress: result.data[0].email_address,
+          message: result.data[0].message,
+          product_id: result.data[0].product_id,
+          photo_name: result.data[0].photo_name,
+        });
       }
     });
   }, []);
@@ -86,15 +98,38 @@ function Index() {
             <FormGroup row>
               <Label sm={2}>From</Label>
               <Col sm={10}>
-                <p>{emailAddress}</p>
+                <p>{data.emailAddress}</p>
               </Col>
             </FormGroup>
             <FormGroup row>
               <Label sm={2}>Body</Label>
               <Col sm={10}>
-                <p>{message}</p>
+                <p>{data.message}</p>
               </Col>
             </FormGroup>
+            {data.product_id ? (
+              <>
+                <FormGroup row>
+                  <Label sm={2}>Link Product</Label>
+                  <Col sm={10}>
+                    <a
+                      href={`${API.urlStore}product/detail?product=${data.product_id}`}
+                      target="_blank"
+                    >{`${API.urlStore}product/detail?product=${data.product_id}`}</a>
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Label sm={2}>Photo Product</Label>
+                  <Col sm={10}>
+                    <img
+                      className="w-50 mb-2"
+                      src={`${API.urlStorage}/${data.photo_name}`}
+                      alt=""
+                    />
+                  </Col>
+                </FormGroup>
+              </>
+            ) : null}
             <TextEditorComponent
               label="Reply"
               onChangeValue={(val) => setMessageReply(val)}

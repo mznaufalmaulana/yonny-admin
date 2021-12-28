@@ -63,12 +63,12 @@ function Index() {
       width: "150px",
       cell: (row) => (
         <>
-          <NavLink
+          {/* <NavLink
             to={`/email/edit/${row.id}`}
             className="btn-sm btn-primary mr-1"
           >
             Edit
-          </NavLink>
+          </NavLink> */}
 
           <a
             href="#"
@@ -107,7 +107,8 @@ function Index() {
             <Col>
               <NavLink to="/email/create">
                 <Button className="btn btn-primary text-white float-right">
-                  + Create Email
+                  <span className="sidebar__link-icon lnr lnr-pencil text-white" />{" "}
+                  Broadcast Message
                 </Button>
               </NavLink>
             </Col>

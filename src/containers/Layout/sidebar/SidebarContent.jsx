@@ -71,7 +71,7 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
         />
         <SidebarCategory title="Email" icon="inbox">
           <SidebarLink
-            title="Subscriber"
+            title="Broadcast"
             route="/email/list"
             onClick={handleHideSidebar}
           />
