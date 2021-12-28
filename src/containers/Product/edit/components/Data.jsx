@@ -59,10 +59,18 @@ function Index() {
     });
     API.get(`product/${id}`).then((result) => {
       if (result.message === "success") {
+        let list = [];
+        result.data[0].product_category.map((item) =>
+          list.push({
+            value: item.id,
+            label: item.category_name,
+          })
+        );
+        setCategory(list);
         setData(result.data[0]);
       }
     });
-    console.log(data);
+    console.log(category);
   }, []);
 
   const makePayload = () => {
@@ -83,7 +91,7 @@ function Index() {
   };
 
   const save = async (payload) => {
-    let resp = await API.put(`product/${id}/update`, payload);
+    let resp = await API.post(`product/${id}/update`, payload);
     handleMessage(resp);
   };
 
@@ -132,9 +140,12 @@ function Index() {
         <FormGroup row>
           <Label sm={2}>Description</Label>
           <Col sm={10}>
-            <TextEditorTwo
-              onChange={(val) => setData({ ...data, description: val })}
-            />
+            {data.description && (
+              <TextEditorTwo
+                onChange={(val) => setData({ ...data, description: val })}
+                initVal={data.description}
+              />
+            )}
           </Col>
         </FormGroup>
 
@@ -159,7 +170,7 @@ function Index() {
           <Label sm={2}>Category Product</Label>
           <Col sm={10}>
             <Select
-              defaultValue={[listCategory[0], listCategory[1]]}
+              value={category}
               isMulti
               closeMenuOnSelect={false}
               components={animatedComponents}

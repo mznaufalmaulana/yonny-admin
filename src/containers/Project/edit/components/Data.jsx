@@ -95,9 +95,12 @@ function Index() {
         <FormGroup row>
           <Label sm={2}>Description</Label>
           <Col sm={10}>
-            <TextEditorTwo
-              onChange={(val) => setData({ ...data, description: val })}
-            />
+            {data.description && (
+              <TextEditorTwo
+                onChange={(val) => setData({ ...data, description: val })}
+                initVal={data.description}
+              />
+            )}
           </Col>
         </FormGroup>
 

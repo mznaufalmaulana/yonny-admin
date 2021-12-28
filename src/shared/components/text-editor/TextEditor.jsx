@@ -7,32 +7,32 @@ import {
 } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
-import PropTypes from "prop-types";
+import PropTypes, { string } from "prop-types";
 
-const ToolbarOptions = {
-  options: ["inline", "blockType", "list", "textAlign", "link", "history"],
-  inline: {
-    options: ["bold", "italic", "underline"],
-  },
-};
+function TextEditorTwo(props) {
+  const ToolbarOptions = {
+    options: ["inline", "blockType", "list", "textAlign", "link", "history"],
+    inline: {
+      options: ["bold", "italic", "underline"],
+    },
+  };
 
-const TextEditorTwo = memo(({ onChange, initVal }) => {
   const _getInitValue = () => {
-    if (initVal) {
-      const contentBlocks = convertFromHTML("<p>Hello world</p>");
+    if (props.initVal) {
+      console.log(props.initVal);
+      const contentBlocks = convertFromHTML(props.initVal);
       const contentState = ContentState.createFromBlockArray(contentBlocks);
-      return convertToRaw(contentState);
+      return EditorState.createWithContent(contentState);
     } else {
       return EditorState.createEmpty();
     }
   };
-  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [editorState, setEditorState] = useState(_getInitValue());
 
   const onEditorStateChange = (items) => {
     setEditorState(items);
-    if (onChange) {
-      onChange(draftToHtml(convertToRaw(items.getCurrentContent())));
+    if (props.onChange) {
+      props.onChange(draftToHtml(convertToRaw(items.getCurrentContent())));
     }
   };
 
@@ -48,14 +48,6 @@ const TextEditorTwo = memo(({ onChange, initVal }) => {
       />
     </div>
   );
-});
-
-TextEditorTwo.propTypes = {
-  onChange: PropTypes.func,
-};
-
-TextEditorTwo.defaultProps = {
-  onChange: () => {},
-};
+}
 
 export default TextEditorTwo;
