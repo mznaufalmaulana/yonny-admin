@@ -1,15 +1,15 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-import Add from "./add/Index";
-import List from "./list/Index";
+import Add from "./add/index";
+import List from "./list/index";
 import Edit from "./edit/Index";
 
 const Index = () => (
   <Container className="dashboard">
     <Row>
       <Col md={12}>
-        <h3 className="page-title">Master Product Baru</h3>
+        <h3 className="page-title">Category</h3>
       </Col>
     </Row>
     <Row>

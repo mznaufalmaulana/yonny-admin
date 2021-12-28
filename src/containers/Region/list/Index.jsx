@@ -42,7 +42,7 @@ function List() {
       cell: (row, index) => index + 1,
     },
     {
-      name: "Category Product Name",
+      name: "Region Name",
       cell: (row) => row.region,
     },
     {
@@ -88,8 +88,8 @@ function List() {
             <Row>
               <Col>
                 <div className="card__title">
-                  <h5 className="bold-text">List Data</h5>
-                  <h5 className="subhead">Example subhead</h5>
+                  <h5 className="bold-text">Data Region</h5>
+                  {/* <h5 className="subhead">Example subhead</h5> */}
                 </div>
               </Col>
               <Col>

@@ -63,6 +63,13 @@ function Index() {
       width: "150px",
       cell: (row) => (
         <>
+          <NavLink
+            to={`/email/edit/${row.id}`}
+            className="btn-sm btn-primary mr-1"
+          >
+            Edit
+          </NavLink>
+
           <a
             href="#"
             className="btn-sm btn-danger mr-1"

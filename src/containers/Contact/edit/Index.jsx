@@ -17,7 +17,8 @@ import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 
 function Index() {
   const [region, setRegion] = useState("");
-  const [address, setAddress] = useState("");
+  const [firstAddress, setFirstAddress] = useState("");
+  const [secondAddress, setSecondAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -41,14 +42,14 @@ function Index() {
         );
         setListRegion(list);
       }
-    });
-    console.log(listRegion);
+    });    
   }, []);
 
   const makePayload = () => {
     let payload = JSON.stringify({
       region_id: region,
-      address: address,
+      first_address: firstAddress,
+      second_address: secondAddress,
       phone: phone,
       email: email,
     });
@@ -58,7 +59,7 @@ function Index() {
   };
 
   const save = async (payload) => {
-    await API.put(`contact/${id}/update`, payload).then((result) => {
+    await API.post(`contact/${id}/update`, payload).then((result) => {
       handleMessage(result);
     });
   };
@@ -78,7 +79,8 @@ function Index() {
     API.get(`contact/${id}`).then((result) => {
       if (result.message === "success") {
         setRegion(result.data[0].region_id);
-        setAddress(result.data[0].address);
+        setFirstAddress(result.data[0].first_address);
+        setSecondAddress(result.data[0].second_address);
         setEmail(result.data[0].email);
         setPhone(result.data[0].phone);
       }
@@ -98,8 +100,8 @@ function Index() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">Edit Data Region</h5>
-                <h5 className="subhead">Example subhead</h5>
+                <h5 className="bold-text">Edit Data Contact</h5>
+                {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
           </Row>
@@ -121,13 +123,24 @@ function Index() {
               </Col>
             </FormGroup>
             <FormGroup row>
-              <Label sm={2}>Address</Label>
+              <Label sm={2}>First Address</Label>
               <Col sm={10}>
                 <Input
                   placeholder="Input the Address"
                   type="textarea"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  value={firstAddress}
+                  onChange={(e) => setFirstAddress(e.target.value)}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label sm={2}>Second Address</Label>
+              <Col sm={10}>
+                <Input
+                  placeholder="Input the Address"
+                  type="textarea"
+                  value={secondAddress}
+                  onChange={(e) => setSecondAddress(e.target.value)}
                 />
               </Col>
             </FormGroup>

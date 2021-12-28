@@ -60,7 +60,7 @@ function Index() {
             <Col>
               <div className="card__title">
                 <h5 className="bold-text">Add Data Social Media</h5>
-                <h5 className="subhead">Example subhead</h5>
+                {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
           </Row>

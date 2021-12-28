@@ -1,8 +1,8 @@
 import React from "react";
 import { Route } from "react-router";
 import { Col, Container, Row } from "reactstrap";
-import List from "./list/Index";
-import Add from "./add/Index";
+import List from "./list/index";
+import Add from "./add/index";
 import Edit from "./edit/Index";
 
 const IndexProduct = () => (
