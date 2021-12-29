@@ -14,6 +14,8 @@ import {
 import API from "../../../services";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 import { useParams } from "react-router";
+import Toggle from "react-toggle";
+require("react-toggle/style.css");
 
 function Index() {
   const [alert, setAlert] = useState({
@@ -33,11 +35,9 @@ function Index() {
   useEffect(() => {
     API.get(`promo/${id}`).then((result) => {
       if (result.message === "success") {
-        console.log(result);
         setData(result.data[0]);
       }
     });
-    console.log(data);
   }, []);
 
   const makePayload = () => {
@@ -45,7 +45,7 @@ function Index() {
     let payload = new FormData();
     payload.append("order", data.order);
     payload.append("link", data.link);
-    payload.append("is_headline", data.is_headline);
+    payload.append("is_headline", data.is_headline ? 1 : 0);
 
     if (data.photo_name instanceof File) {
       payload.append("photo_name", data.photo_name);
@@ -129,7 +129,7 @@ function Index() {
               </Col>
             </FormGroup>
 
-            <FormGroup row>
+            {/* <FormGroup row>
               <Label sm={2}>Type</Label>
               <Col sm={10}>
                 <Input
@@ -146,7 +146,7 @@ function Index() {
                   ))}
                 </Input>
               </Col>
-            </FormGroup>
+            </FormGroup> */}
 
             <FormGroup row>
               <Label sm={2}>Image</Label>
@@ -169,6 +169,30 @@ function Index() {
                     {data?.photo_name ? <>Edit</> : <>Add</>}
                   </label>
                 </div>
+              </Col>
+            </FormGroup>
+
+            <FormGroup row>
+              <Label sm={2}>Headline</Label>
+              <Col sm={10}>
+                {data && (
+                  <Label>
+                    <Toggle
+                      className="mb-0"
+                      id="toggle"
+                      defaultChecked={data?.is_headline}
+                      onChange={(e) =>
+                        setData({ ...data, is_headline: e.target.checked })
+                      }
+                    />
+                    <span
+                      className="align-middle ml-2 text-muted"
+                      htmlFor="toggle"
+                    >
+                      {data?.is_headline ? "Headline" : "Non Headline"}
+                    </span>
+                  </Label>
+                )}
               </Col>
             </FormGroup>
           </Form>

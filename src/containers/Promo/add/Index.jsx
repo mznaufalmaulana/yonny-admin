@@ -6,6 +6,7 @@ import {
   Col,
   Form,
   FormGroup,
+  Label,
   Row,
   Spinner,
 } from "reactstrap";
@@ -14,6 +15,8 @@ import InputFileComponent from "../../Layout/components/InputFileComponent";
 import SelectComponent from "../../Layout/components/SelectComponent";
 import API from "../../../services";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
+import Toggle from "react-toggle";
+require("react-toggle/style.css");
 
 function Index() {
   const [alert, setAlert] = useState({
@@ -36,7 +39,7 @@ function Index() {
     payload.append("order", order);
     payload.append("link", link);
     payload.append("photo_name", files[0]);
-    payload.append("is_headline", isHeadline);
+    payload.append("is_headline", isHeadline ? 1 : 0);
 
     setIsLoading(true);
     save(payload);
@@ -98,17 +101,37 @@ function Index() {
               onChangeValue={(val) => setLink(val)}
             />
 
-            <SelectComponent
+            {/* <SelectComponent
               label="Type"
               placeholder="Select Type"
               data={type}
               onChangeValue={(val) => setIsHeadline(val)}
-            />
+            /> */}
 
             <InputFileComponent
               label="Photo Project"
               onChangeValue={(val) => setFiles(val)}
             />
+
+            <FormGroup row>
+              <Label sm={2}>Headline</Label>
+              <Col sm={10}>
+                <Label>
+                  <Toggle
+                    className="mb-0"
+                    id="toggle"
+                    defaultChecked={isHeadline}
+                    onChange={(e) => setIsHeadline(e.target.checked)}
+                  />
+                  <span
+                    className="align-middle ml-2 text-muted"
+                    htmlFor="toggle"
+                  >
+                    {isHeadline ? "Headline" : "Non Headline"}
+                  </span>
+                </Label>
+              </Col>
+            </FormGroup>
           </Form>
           <FormGroup row>
             <Col
