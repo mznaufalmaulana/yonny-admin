@@ -12,12 +12,19 @@ import {
 import API from "../../../services";
 import InputComponent from "../../Layout/components/InputComponent";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
+import SelectComponent from "../../Layout/components/SelectComponent";
 
 function Index() {
   const [icon, setIcon] = useState("");
   const [link, setLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState({ open: false, message: "", status: "" });
+  const optionIcon = [
+    { value: 'fa fa-facebook', label: 'fa fa-facebook' },
+    { value: 'fa fa-instagram', label: 'fa fa-instagram' },
+    { value: 'fa fa-twitter', label: 'fa fa-twitter' },
+  ];
+
 
   const makePayload = () => {
     let payload = JSON.stringify({
@@ -65,10 +72,16 @@ function Index() {
             </Col>
           </Row>
           <Form id="form">
-            <InputComponent
+            {/* <InputComponent
               label="Icon Name"
               type="text"
               placeholder="Input the Icon Name"
+              onChangeValue={(val) => setIcon(val)}
+            /> */}
+             <SelectComponent
+              label="Icon Social Media"
+              placeholder="Select Icon"
+              data={optionIcon}
               onChangeValue={(val) => setIcon(val)}
             />
             <InputComponent
@@ -76,7 +89,7 @@ function Index() {
               type="text"
               placeholder="Input the Social Media"
               onChangeValue={(val) => setLink(val)}
-            />
+            />           
           </Form>
           <FormGroup row>
             <Col

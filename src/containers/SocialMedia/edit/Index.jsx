@@ -14,22 +14,29 @@ import {
 } from "reactstrap";
 import API from "../../../services";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
-function Index() {
-  const [link, setLink] = useState("");
-  const [icon, setIcon] = useState("");
+function Index() {  
   const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState("");
   const [alert, setAlert] = useState({
     open: true,
     message: "",
     status: "",
   });
+  const labelInstgram = <FontAwesomeIcon icon={faInstagram}/>
+  const optionIcon = [
+    { value: 'fa fa-facebook', label: labelInstgram },
+    { value: 'fa fa-instagram', label: 'fa fa-instagram' },
+    { value: 'fa fa-twitter', label: 'fa fa-twitter' },
+  ];
   const { id } = useParams();
 
   const makePayload = () => {
     let payload = JSON.stringify({
-      icon: icon,
-      link: link,
+      icon: data.icon,
+      link: data.link,
     });
 
     setIsLoading(true);
@@ -56,8 +63,7 @@ function Index() {
   useEffect(() => {
     API.get(`social-media/${id}`).then((result) => {
       if (result.message === "success") {
-        setLink(result.data[0].link);
-        setIcon(result.data[0].icon);
+        setData(result.data[0]);
       }
     });
   }, []);
@@ -82,14 +88,21 @@ function Index() {
           </Row>
           <Form id="form">
             <FormGroup row>
-              <Label sm={2}>Icon Name</Label>
+              <Label sm={2}>Icon Social Media</Label>
               <Col sm={10}>
                 <Input
-                  placeholder="Input the Icon Name"
-                  type="text"
-                  value={icon}
-                  onChange={(e) => setIcon(e.target.value)}
-                />
+                  name="select"
+                  type="select"
+                  value={data?.icon}
+                  onChange={(e) =>
+                    setData({...data, icon: e.target.value})
+                  }
+                >
+                  <option value={-1} disabled>Select Icon</option>
+                  {optionIcon.map((item) => (
+                    <option value={item.value}>{item.label}</option>
+                  ))}                  
+                </Input>
               </Col>
             </FormGroup>
             <FormGroup row>
@@ -98,8 +111,9 @@ function Index() {
                 <Input
                   placeholder="Input the Link"
                   type="text"
-                  value={link}
-                  onChange={(e) => setLink(e.target.value)}
+                  value={data?.link}
+                  onChange={(e) => 
+                    setData({...data, link: e.target.value})}
                 />
               </Col>
             </FormGroup>

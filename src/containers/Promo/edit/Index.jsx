@@ -32,16 +32,13 @@ function Index() {
 
   useEffect(() => {
     API.get(`promo/${id}`).then((result) => {
-      if (result.message === "success") {
-        console.log(result);
+      if (result.message === "success") {        
         setData(result.data[0]);
       }
     });
-    console.log(data);
   }, []);
 
-  const makePayload = () => {
-    console.log(data.photo_name);
+  const makePayload = () => {    
     let payload = new FormData();
     payload.append("order", data.order);
     payload.append("link", data.link);
