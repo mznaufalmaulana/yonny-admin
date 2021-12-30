@@ -39,7 +39,9 @@ function Index() {
         result.data.map((item) =>
           list.push({
             value: item.id,
-            label: item.category_name,
+            label: `${
+              item.category_parent ? item.category_parent + " - " : ""
+            }${item.category_name}`,
           })
         );
         setListCategory(list);
