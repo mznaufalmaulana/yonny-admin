@@ -36,7 +36,7 @@ function Index() {
       project_name: data.project_name,
       description: data.description,
       share_count: data.share_count,
-      seen_count: data.seen_count,
+      seen_count: 0,
       is_active: 1,
     });
 
@@ -112,21 +112,6 @@ function Index() {
               placeholder="Input the Share Count"
               type="text"
               value={data?.share_count}
-              onChange={(e) =>
-                setData({ ...data, product_name: e.target.value })
-              }
-            />
-          </Col>
-        </FormGroup>
-
-        <FormGroup row>
-          <Label sm={2}>Seen Count</Label>
-          <Col sm={10}>
-            <Input
-              name="text"
-              placeholder="Input the Seen Count"
-              type="text"
-              value={data?.seen_count}
               onChange={(e) =>
                 setData({ ...data, product_name: e.target.value })
               }

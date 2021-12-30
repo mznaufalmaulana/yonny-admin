@@ -1,11 +1,14 @@
 const isProd = false;
 // API Server
 const urlDev = "http://178.128.99.51:81/admin";
+// const urlDev = "http://127.0.0.1:8000/admin";
 const urlProd = "http://#";
 
 // Link Storage and Store
 const urlStorage = "http://178.128.99.51:81/storage/";
+// const urlStorage = "http://127.0.0.1:8000/storage/";
 const urlStore = "http://178.128.99.51/";
+// const urlStore = "http://127.0.0.1:8000/";
 
 const Root = isProd ? urlProd : urlDev;
 

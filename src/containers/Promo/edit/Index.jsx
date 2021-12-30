@@ -42,6 +42,7 @@ function Index() {
 
   const makePayload = () => {    
     let payload = new FormData();
+    payload.append("name", data.name);
     payload.append("order", data.order);
     payload.append("link", data.link);
     payload.append("is_headline", data.is_headline ? 1 : 0);
@@ -103,6 +104,19 @@ function Index() {
           </Row>
           <Form id="form">
             <FormGroup row>
+              <Label sm={2}>Name</Label>
+              <Col sm={10}>
+                <Input
+                  name="text"
+                  placeholder="Input the Name"
+                  type="text"
+                  value={data?.name}
+                  onChange={(e) => setData({ ...data, name: e.target.value })}
+                />
+              </Col>
+            </FormGroup>
+
+            <FormGroup row>
               <Label sm={2}>Order</Label>
               <Col sm={10}>
                 <Input
@@ -127,25 +141,6 @@ function Index() {
                 />
               </Col>
             </FormGroup>
-
-            {/* <FormGroup row>
-              <Label sm={2}>Type</Label>
-              <Col sm={10}>
-                <Input
-                  name="select"
-                  type="select"
-                  value={data?.is_headline}
-                  onChange={(e) =>
-                    setData({ ...data, is_headline: e.target.value })
-                  }
-                >
-                  <option value={-1}>Select Type</option>
-                  {type.map((item) => (
-                    <option value={item.value}>{item.label}</option>
-                  ))}
-                </Input>
-              </Col>
-            </FormGroup> */}
 
             <FormGroup row>
               <Label sm={2}>Image</Label>

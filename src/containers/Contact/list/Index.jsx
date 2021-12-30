@@ -4,11 +4,13 @@ import DataTable from "react-data-table-component";
 import { NavLink } from "react-router-dom";
 import API from "../../../services";
 import ModalDelete from "./modal/delete";
+import ModalConfirmation from "../../../shared/components/modal/modalConfirmation";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
 
 function List() {
   const [alert, setAlert] = useState({ open: false, message: "", status: "" });
   const [deleteData, setDeleteData] = useState({ open: false, data: "" });
+  const [onHeaderFooter, seOnHeaderFooter] = useState({ open: false, data: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState("");
 
@@ -21,6 +23,19 @@ function List() {
           status: "success",
         });
         setDeleteData({ open: false, data: "", status: "error" });
+      }
+    });
+  };
+
+  const changeHeaderFooter = () => {
+    API.post(`contact/${onHeaderFooter.data}/update-on-footer`).then((result) => {
+      if (result.message === "success") {
+        setAlert({
+          open: true,
+          message: `Contact was saved`,
+          status: "success",
+        });
+        seOnHeaderFooter({ open: false, data: "", status: "error" });
       }
     });
   };
@@ -46,8 +61,12 @@ function List() {
       cell: (row) => row.region,
     },
     {
-      name: "Address",
-      cell: (row) => row.first_address+row.second_address,
+      name: "First Address",
+      cell: (row) => row.first_address,
+    },
+    {
+      name: "Second Address",
+      cell: (row) => row.second_address,
     },
     {
       name: "Phone",
@@ -58,10 +77,30 @@ function List() {
       cell: (row) => row.email,
     },
     {
+      name: "On Header Footer",
+      cell: (row) => row.is_on_footer? (
+        <span className="badge badge-pill badge-success p-2 px-4 mr-1">
+          Yes
+        </span>
+        ):(
+        <span className="badge badge-pill badge-danger p-2 px-4 mr-1">
+          No
+        </span>
+        ),
+    },
+    {
       name: "",
-      width: "150px",
+      width: "250px",
       cell: (row) => (
-        <>
+        <>        
+         <a
+            href="#"
+            className="btn-sm btn-info mr-1"
+            onClick={() => seOnHeaderFooter({ open: true, title: `Change this data`, question: 'Are You sure change this data ?', data: row.id })}
+          >
+            Header Footer
+          </a>
+
           <NavLink
             to={`/contact/edit/${row.id}`}
             className="btn-sm btn-primary mr-1"
@@ -75,7 +114,7 @@ function List() {
             onClick={() => setDeleteData({ open: true, data: row })}
           >
             Delete
-          </a>
+          </a>          
         </>
       ),
     },
@@ -84,6 +123,14 @@ function List() {
   const index = (
     <>
       <Col md={12}>
+        <ModalConfirmation
+          open={onHeaderFooter.open}
+          data={onHeaderFooter.data}
+          title={onHeaderFooter.title}          
+          question={onHeaderFooter.question}        
+          onHide={() => seOnHeaderFooter({ ...onHeaderFooter, open: false })}
+          onAccept={() => changeHeaderFooter()}
+        />
         <ModalDelete
           open={deleteData.open}
           data={deleteData.data}
@@ -125,7 +172,7 @@ function List() {
               }}
               progressComponent={
                 <div className="text-center p-5">
-                  <p>Memuat Data</p>
+                  <p>Loading Data</p>
                   <Spinner animation="border" size="lg" />
                 </div>
               }

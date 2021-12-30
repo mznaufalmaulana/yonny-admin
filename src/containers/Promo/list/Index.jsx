@@ -42,6 +42,10 @@ function Index() {
       cell: (row, index) => index + 1,
     },
     {
+      name: "Name",
+      cell: (row) => row.name,  
+    },
+    {
       name: "Link",
       cell: (row) => row.link,
     },

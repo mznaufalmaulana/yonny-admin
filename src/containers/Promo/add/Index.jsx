@@ -26,6 +26,7 @@ function Index() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState("");
+  const [name, setName] = useState("");
   const [order, setOrder] = useState("");
   const [link, setLink] = useState("");
   const [isHeadline, setIsHeadline] = useState("");
@@ -36,6 +37,7 @@ function Index() {
 
   const makePayload = () => {
     let payload = new FormData();
+    payload.append("name", name);
     payload.append("order", order);
     payload.append("link", link);
     payload.append("photo_name", files[0]);
@@ -87,6 +89,13 @@ function Index() {
             </Col>
           </Row>
           <Form id="form">
+          <InputComponent
+              label="Name"
+              type="text"
+              placeholder="Input the Promo's Name"
+              onChangeValue={(val) => setName(val)}
+            />
+
             <InputComponent
               label="Order"
               type="text"
@@ -100,14 +109,7 @@ function Index() {
               placeholder="Input the Promo's Link"
               onChangeValue={(val) => setLink(val)}
             />
-
-            {/* <SelectComponent
-              label="Type"
-              placeholder="Select Type"
-              data={type}
-              onChangeValue={(val) => setIsHeadline(val)}
-            /> */}
-
+            
             <InputFileComponent
               label="Photo Project"
               onChangeValue={(val) => setFiles(val)}

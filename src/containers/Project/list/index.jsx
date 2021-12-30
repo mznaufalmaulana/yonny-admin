@@ -46,6 +46,10 @@ function Index() {
       cell: (row) => row.project_name,
     },
     {
+      name: "Share Count",
+      cell: (row) => row.share_count,
+    },
+    {
       name: "",
       width: "150px",
       cell: (row) => (

@@ -108,6 +108,7 @@ const LogInForm = ({ handleSubmit }) => {
             <a href="/">Forgot a password?</a>
           </div>
         </div>
+        <br />
         <Button
           className="btn btn-primary account__btn account__btn--small text-white"
           onClick={make}

@@ -25,9 +25,9 @@ function Index() {
     message: "",
     status: "",
   });
-  const labelInstgram = <FontAwesomeIcon icon={faInstagram}/>
+  const labelInstgram = <FontAwesomeIcon icon={faInstagram}/>;
   const optionIcon = [
-    { value: 'fa fa-facebook', label: labelInstgram },
+    { value: 'fa fa-facebook', label: 'fa fa-facebook' },
     { value: 'fa fa-instagram', label: 'fa fa-instagram' },
     { value: 'fa fa-twitter', label: 'fa fa-twitter' },
   ];

@@ -15,12 +15,16 @@ import API from "../../../services";
 import InputComponent from "../../Layout/components/InputComponent";
 import SelectComponent from "../../Layout/components/SelectComponent";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
+import Toggle from "react-toggle";
+require("react-toggle/style.css");
 
 function Index() {
   const [region, setRegion] = useState("");
-  const [address, setAddress] = useState("");
+  const [firstAddress, setFirstAddress] = useState("");
+  const [secondAddress, setSecondAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [onFooter, setOnFooter] = useState(0);
   const [listRegion, setListRegion] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState({ open: false, message: "", status: "" });
@@ -44,9 +48,11 @@ function Index() {
   const makePayload = () => {
     let payload = JSON.stringify({
       region_id: region,
-      address: address,
+      first_address: firstAddress,
+      second_address: secondAddress,
       phone: phone,
       email: email,
+      is_on_footer: onFooter,
     });
 
     setIsLoading(true);
@@ -90,16 +96,22 @@ function Index() {
           </Row>
           <Form id="form">
             <SelectComponent
-              label="Type"
+              label="Region"
               placeholder={"Select"}
               data={listRegion}
               onChangeValue={(val) => setRegion(val)}
             />
             <InputComponent
-              label="Address"
+              label="First Address"
               type="textarea"
-              placeholder="Input the Address"
-              onChangeValue={(val) => setAddress(val)}
+              placeholder="Input the First Address"
+              onChangeValue={(val) => setFirstAddress(val)}
+            />
+            <InputComponent
+              label="Second Address"
+              type="textarea"
+              placeholder="Input the Second Address"
+              onChangeValue={(val) => setSecondAddress(val)}
             />
             <InputComponent
               label="Phone"
@@ -112,7 +124,7 @@ function Index() {
               type="email"
               placeholder="Input the Email"
               onChangeValue={(val) => setEmail(val)}
-            />
+            />          
           </Form>
           <FormGroup row>
             <Col

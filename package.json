@@ -7,7 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "scp -r ./build/* batuyonny@178.128.99.51:/home/batuyonny/yonny-admin/"
+    "deploy": "scp -r ./build.zip batuyonny@178.128.99.51:/home/batuyonny/yonny-admin/"
   },
   "dependencies": {
     "@emotion/react": "^11.6.0",

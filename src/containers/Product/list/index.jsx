@@ -59,6 +59,14 @@ function Index() {
         )),
     },
     {
+      name: "Seen Count",
+      cell: (row) => row.seen_count,
+    },
+    {
+      name: "Share Count",
+      cell: (row) => row.share_count,
+    },
+    {
       name: "",
       width: "150px",
       cell: (row) => (

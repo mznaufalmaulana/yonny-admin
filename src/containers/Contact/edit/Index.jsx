@@ -21,6 +21,7 @@ function Index() {
   const [secondAddress, setSecondAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [onFooter, setOnFooter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [listRegion, setListRegion] = useState([]);
   const [alert, setAlert] = useState({
@@ -52,6 +53,7 @@ function Index() {
       second_address: secondAddress,
       phone: phone,
       email: email,
+      is_on_footer: onFooter,
     });
 
     setIsLoading(true);
@@ -83,6 +85,7 @@ function Index() {
         setSecondAddress(result.data[0].second_address);
         setEmail(result.data[0].email);
         setPhone(result.data[0].phone);
+        setOnFooter(result.data[0].is_on_footer);
       }
     });
   }, []);
