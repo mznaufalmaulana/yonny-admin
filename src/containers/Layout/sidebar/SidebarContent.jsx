@@ -33,11 +33,11 @@ const SidebarContent = ({ onClick, changeToDark, changeToLight }) => {
             route="/master/region"
             onClick={handleHideSidebar}
           />
-          {/* <SidebarLink
+          <SidebarLink
             title="User"
             route="/master/user"
             onClick={handleHideSidebar}
-          /> */}
+          />
         </SidebarCategory>
         <SidebarLink
           title="Product"

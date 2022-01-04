@@ -20,11 +20,10 @@ function Index() {
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState({ open: false, message: "", status: "" });
   const optionIcon = [
-    { value: 'fa fa-facebook', label: 'fa fa-facebook' },
-    { value: 'fa fa-instagram', label: 'fa fa-instagram' },
-    { value: 'fa fa-twitter', label: 'fa fa-twitter' },
+    { value: "fa fa-facebook", label: "Facebook" },
+    { value: "fa fa-instagram", label: "Instagram" },
+    { value: "fa fa-twitter", label: "Twitter" },
   ];
-
 
   const makePayload = () => {
     let payload = JSON.stringify({
@@ -78,7 +77,7 @@ function Index() {
               placeholder="Input the Icon Name"
               onChangeValue={(val) => setIcon(val)}
             /> */}
-             <SelectComponent
+            <SelectComponent
               label="Icon Social Media"
               placeholder="Select Icon"
               data={optionIcon}
@@ -89,7 +88,7 @@ function Index() {
               type="text"
               placeholder="Input the Social Media"
               onChangeValue={(val) => setLink(val)}
-            />           
+            />
           </Form>
           <FormGroup row>
             <Col
