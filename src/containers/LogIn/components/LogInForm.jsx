@@ -104,9 +104,9 @@ const LogInForm = ({ handleSubmit }) => {
             </button>
           </div>
           <span className="text-danger">{error.password}</span>
-          <div className="account__forgot-password">
+          {/* <div className="account__forgot-password">
             <a href="/">Forgot a password?</a>
-          </div>
+          </div> */}
         </div>
         <br />
         <Button

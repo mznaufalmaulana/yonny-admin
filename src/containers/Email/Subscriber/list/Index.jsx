@@ -100,15 +100,15 @@ function Index() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">List Data</h5>
-                <h5 className="subhead">Example subhead</h5>
+                <h5 className="bold-text">Data Email</h5>
+                {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
             <Col>
               <NavLink to="/email/create">
                 <Button className="btn btn-primary text-white float-right">
-                  <span className="sidebar__link-icon lnr lnr-pencil text-white" />{" "}
-                  Broadcast Message
+                  <span className="sidebar__link-icon lnr lnr-bullhorn text-white" />{" "}
+                  Broadcast
                 </Button>
               </NavLink>
             </Col>
@@ -126,7 +126,7 @@ function Index() {
             }}
             progressComponent={
               <div className="text-center p-5">
-                <p>Memuat Data</p>
+                <p>Loading Data</p>
                 <Spinner animation="border" size="lg" />
               </div>
             }

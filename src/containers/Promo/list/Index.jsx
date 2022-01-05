@@ -47,7 +47,7 @@ function Index() {
     },
     {
       name: "Link",
-      cell: (row) => row.link,
+      cell: (row) => (<a href={row.link} target="_blank">{row.link}</a>),
     },
     {
       name: "Type",
@@ -133,7 +133,7 @@ function Index() {
             }}
             progressComponent={
               <div className="text-center p-5">
-                <p>Memuat Data</p>
+                <p>Loading Data</p>
                 <Spinner animation="border" size="lg" />
               </div>
             }

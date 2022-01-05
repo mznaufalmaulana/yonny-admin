@@ -127,7 +127,7 @@ const RegisterForm = ({ handleSubmit }) => {
               <KeyVariantIcon />
             </div>
             <Field
-              name="password"
+              name="passwordConfirm"
               component="input"
               type={isPasswordShown ? "text" : "password"}
               placeholder="Password"

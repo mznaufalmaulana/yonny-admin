@@ -119,7 +119,7 @@ function List() {
               }}
               progressComponent={
                 <div className="text-center p-5">
-                  <p>Memuat Data</p>
+                  <p>Loading Data</p>
                   <Spinner animation="border" size="lg" />
                 </div>
               }

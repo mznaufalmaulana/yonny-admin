@@ -27,9 +27,9 @@ function Index() {
   });
   const labelInstgram = <FontAwesomeIcon icon={faInstagram}/>;
   const optionIcon = [
-    { value: 'fa fa-facebook', label: 'fa fa-facebook' },
-    { value: 'fa fa-instagram', label: 'fa fa-instagram' },
-    { value: 'fa fa-twitter', label: 'fa fa-twitter' },
+    { value: 'faFacebook', label:  'Facebook'},
+    { value: 'faInstagram', label: 'Instagram' },
+    { value: 'faTwitter', label: 'Twitter' },
   ];
   const { id } = useParams();
 
@@ -101,7 +101,7 @@ function Index() {
                   <option value={-1} disabled>Select Icon</option>
                   {optionIcon.map((item) => (
                     <option value={item.value}>{item.label}</option>
-                  ))}                  
+                  ))}                                     
                 </Input>
               </Col>
             </FormGroup>

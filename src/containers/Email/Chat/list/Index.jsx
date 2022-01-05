@@ -50,6 +50,18 @@ function Index() {
       cell: (row) => row.email_address,
     },
     {
+      name: "With Product",
+      cell: (row) => row.product_id? (
+        <span className="badge badge-pill badge-info p-2 px-4 mr-1">
+          Yes
+        </span>
+      ):(
+        <span className="badge badge-pill badge-warning p-2 px-4 mr-1">
+          No
+        </span>
+      ),
+    },
+    {
       name: "",
       width: "150px",
       cell: (row) => (
@@ -83,8 +95,8 @@ function Index() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">List Data</h5>
-                <h5 className="subhead">Example subhead</h5>
+                <h5 className="bold-text">Data Email Message</h5>
+                {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
           </Row>
@@ -101,9 +113,9 @@ function Index() {
             }}
             progressComponent={
               <div className="text-center p-5">
-                <p>Memuat Data</p>
+                <p>Loading Data</p>
                 <Spinner animation="border" size="lg" />
-              </div>
+              </div>              
             }
           />
         </CardBody>

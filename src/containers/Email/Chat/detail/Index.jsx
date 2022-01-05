@@ -89,7 +89,7 @@ function Index() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">Edit Data Email</h5>
+                <h5 className="bold-text">Reply Email</h5>
                 {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
@@ -102,7 +102,7 @@ function Index() {
               </Col>
             </FormGroup>
             <FormGroup row>
-              <Label sm={2}>Body</Label>
+              <Label sm={2}>Message</Label>
               <Col sm={10}>
                 <p>{data.message}</p>
               </Col>

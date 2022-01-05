@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import API from "../../../services";
 import ModalDelete from "./modal/delete";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 function List() {
   const [alert, setAlert] = useState({ open: false, message: "", status: "" });
@@ -42,14 +44,19 @@ function List() {
       name: "No",
       width: "55px",
       cell: (row, index) => index + 1,
+    },    
+    {
+      name: "Icon",
+      cell: (row) => row.icon==='faFacebook'?
+          (<FontAwesomeIcon icon={faFacebook}/>):
+        row.icon==='faInstagram'?
+          (<FontAwesomeIcon icon={faInstagram}/>):
+        row.icon==='faTwitter'?
+          (<FontAwesomeIcon icon={faTwitter}/>):null,
     },
     {
       name: "Link",
-      cell: (row) => row.link,
-    },
-    {
-      name: "Icon",
-      cell: (row) => row.icon,
+      cell: (row) => (<a href={row.link} target="_blank">{row.link}</a>),
     },
     {
       name: "",
@@ -119,7 +126,7 @@ function List() {
               }}
               progressComponent={
                 <div className="text-center p-5">
-                  <p>Memuat Data</p>
+                  <p>Loading Data</p>                  
                   <Spinner animation="border" size="lg" />
                 </div>
               }

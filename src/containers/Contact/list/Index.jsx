@@ -79,11 +79,11 @@ function List() {
     {
       name: "On Header Footer",
       cell: (row) => row.is_on_footer? (
-        <span className="badge badge-pill badge-success p-2 px-4 mr-1">
+        <span className="badge badge-pill badge-info p-2 px-4 mr-1">
           Yes
         </span>
         ):(
-        <span className="badge badge-pill badge-danger p-2 px-4 mr-1">
+        <span className="badge badge-pill badge-warning p-2 px-4 mr-1">
           No
         </span>
         ),

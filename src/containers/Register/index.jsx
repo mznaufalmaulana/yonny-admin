@@ -21,24 +21,7 @@ const Register = () => (
             Start your business easily
           </h4>
         </div>
-        <RegisterForm onSubmit />
-        <div className="account__or">
-          <p>Or Easily Using</p>
-        </div>
-        <div className="account__social">
-          <Link
-            className="account__social-btn account__social-btn--facebook"
-            to="/pages/one"
-          >
-            <FacebookIcon />
-          </Link>
-          <Link
-            className="account__social-btn account__social-btn--google"
-            to="/pages/one"
-          >
-            <GooglePlusIcon />
-          </Link>
-        </div>
+        <RegisterForm onSubmit />        
       </div>
     </div>
   </div>

@@ -20,9 +20,9 @@ function Index() {
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState({ open: false, message: "", status: "" });
   const optionIcon = [
-    { value: 'fa fa-facebook', label: 'fa fa-facebook' },
-    { value: 'fa fa-instagram', label: 'fa fa-instagram' },
-    { value: 'fa fa-twitter', label: 'fa fa-twitter' },
+    { value: 'faFacebook', label:  'Facebook'},
+    { value: 'faInstagram', label: 'Instagram' },
+    { value: 'faTwitter', label: 'Twitter' },
   ];
 
 

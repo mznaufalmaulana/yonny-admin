@@ -30,12 +30,12 @@ function Index() {
   const [promoId, setPromoId] = useState("");
   const [listPromo, setListPromo] = useState([]);
   const type = [
-    { value: 1, label: "Blast Promo" },
-    { value: 2, label: "Broadcast" },
+    { value: 1, label: "Broadcast Promo" },
+    { value: 2, label: "Broadcast Message" },
   ];
 
   useEffect(() => {
-    API.get(`email/list`).then((result) => {
+    API.get(`email/list/subscriber`).then((result) => {
       if (result.message === "success") {
         let list = [];
         result.data.map((item) =>
@@ -53,7 +53,7 @@ function Index() {
         result.data.map((item) =>
           list.push({
             value: item.id,
-            label: item.link,
+            label: item.name,
           })
         );
         setListPromo(list);
@@ -111,8 +111,8 @@ function Index() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">Create Email</h5>
-                <h5 className="subhead">Example subhead</h5>
+                <h5 className="bold-text">Broadcast Email</h5>
+                {/* <h5 className="subhead">Example subhead</h5> */}
               </div>
             </Col>
           </Row>
