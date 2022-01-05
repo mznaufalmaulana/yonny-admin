@@ -25,7 +25,6 @@ function Index() {
     { value: 'faTwitter', label: 'Twitter' },
   ];
 
-
   const makePayload = () => {
     let payload = JSON.stringify({
       icon: icon,
@@ -78,7 +77,7 @@ function Index() {
               placeholder="Input the Icon Name"
               onChangeValue={(val) => setIcon(val)}
             /> */}
-             <SelectComponent
+            <SelectComponent
               label="Icon Social Media"
               placeholder="Select Icon"
               data={optionIcon}
@@ -89,7 +88,7 @@ function Index() {
               type="text"
               placeholder="Input the Social Media"
               onChangeValue={(val) => setLink(val)}
-            />           
+            />
           </Form>
           <FormGroup row>
             <Col

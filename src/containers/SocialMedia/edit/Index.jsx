@@ -14,10 +14,8 @@ import {
 } from "reactstrap";
 import API from "../../../services";
 import SnackbarComponent from "../../Layout/components/SnackbarComponent";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
-function Index() {  
+function Index() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState("");
   const [alert, setAlert] = useState({
@@ -25,7 +23,6 @@ function Index() {
     message: "",
     status: "",
   });
-  const labelInstgram = <FontAwesomeIcon icon={faInstagram}/>;
   const optionIcon = [
     { value: 'faFacebook', label:  'Facebook'},
     { value: 'faInstagram', label: 'Instagram' },
@@ -94,11 +91,11 @@ function Index() {
                   name="select"
                   type="select"
                   value={data?.icon}
-                  onChange={(e) =>
-                    setData({...data, icon: e.target.value})
-                  }
+                  onChange={(e) => setData({ ...data, icon: e.target.value })}
                 >
-                  <option value={-1} disabled>Select Icon</option>
+                  <option value={-1} disabled>
+                    Select Icon
+                  </option>
                   {optionIcon.map((item) => (
                     <option value={item.value}>{item.label}</option>
                   ))}                                     
@@ -112,8 +109,7 @@ function Index() {
                   placeholder="Input the Link"
                   type="text"
                   value={data?.link}
-                  onChange={(e) => 
-                    setData({...data, link: e.target.value})}
+                  onChange={(e) => setData({ ...data, link: e.target.value })}
                 />
               </Col>
             </FormGroup>

@@ -7,6 +7,7 @@ import ExamplePageOne from "../Example/index";
 import ExamplePageTwo from "../ExampleTwo/index";
 import IndexMasterProduct from "../MasterProduct";
 import IndexMasterType from "../MasterType";
+import IndexUser from "../MasterUser";
 import IndexProduct from "../Product/";
 import IndexProject from "../Project/";
 import IndexRegion from "../Region/";
@@ -35,6 +36,7 @@ const wrappedRoutes = () => (
       <ProtectedRoute path="/master/product" component={IndexMasterProduct} />
       <ProtectedRoute path="/master/type" component={IndexMasterType} />
       <ProtectedRoute path="/master/region" component={IndexRegion} />
+      <ProtectedRoute path="/master/user" component={IndexUser} />
       <ProtectedRoute path="/product" component={IndexProduct} />
       <ProtectedRoute path="/project" component={IndexProject} />
       <ProtectedRoute path="/social-media" component={IndexSocialMedia} />
