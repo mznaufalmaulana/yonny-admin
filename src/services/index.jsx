@@ -21,6 +21,7 @@ const get = (path) => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Accept: "application/json",
         },
       })
         .then((result) => result.json())
@@ -49,6 +50,7 @@ const post = (path, param) => {
           "XSRF-TOKEN":
             "eyJpdiI6IlRwczJXSGdCOWdoNUlLUytnOFpyS0E9PSIsInZhbHVlIjoiUUtDeWFSUTlpdkNvN1VlVytTMThYRW1iQzhqTHlSRjA4Q2NCY2tKejdxNnVLSjhVVHVjQkRUdWhQOUV3eldmNEl4dHl1OXJnQS83ckxITy9ZdGhmZ1ZCTE9QRzFvMzJpTWVUd2swbHlTN0hvRURuL2dWL3lZMkNlc1F3YnI1cysiLCJtYWMiOiJiM2FkZDVhODIxOWM0NGVjM2RlMWUwNjdhOThmOTE4ZjM5Yzc4MWFiMWQ3ZjViMDczNmVkMzcwMGEwYjJlMDJjIn0%3D; expires=Fri, 26-Nov-2021 17:22:35 GMT; Max-Age=7200; path=/; samesite=lax",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Accept: "application/json",
         },
         body: param,
       })
@@ -76,6 +78,7 @@ const deleteData = (path, param) => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Accept: "application/json",
         },
         body: param,
       })
@@ -103,6 +106,7 @@ const put = (path, param) => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Accept: "application/json",
         },
         body: param,
       })
@@ -163,6 +167,7 @@ const download = (path) => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Accept: "application/json",
         },
       }).then(
         () => {

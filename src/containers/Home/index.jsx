@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
-import ExampleCard from "./components/ExampleCard";
+import ChartCategory from "./components/ChartCategory";
+import TopTable from "./components/TopTable";
 
 const Home = () => (
   <Container className="dashboard">
@@ -10,7 +11,8 @@ const Home = () => (
       </Col>
     </Row>
     <Row>
-      <ExampleCard />
+      <ChartCategory />
+      <TopTable />
     </Row>
   </Container>
 );
