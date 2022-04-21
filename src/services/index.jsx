@@ -1,13 +1,13 @@
 const isProd = false;
 // API Server
-const urlDev = "https://batuyonny.live:81/admin";
+const urlDev = "https://batuyonny.com:81/admin";
 // const urlDev = "http://127.0.0.1:8000/admin";
 const urlProd = "http://#";
 
 // Link Storage and Store
-const urlStorage = "https://batuyonny.live:81/storage/";
+const urlStorage = "https://batuyonny.com:81/storage/";
 // const urlStorage = "http://127.0.0.1:8000/storage/";
-const urlStore = "https://batuyonny.live/";
+const urlStore = "https://batuyonny.com/";
 // const urlStore = "http://127.0.0.1:8000/";
 
 const Root = isProd ? urlProd : urlDev;

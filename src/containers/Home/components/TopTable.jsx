@@ -30,11 +30,11 @@ function TopTable() {
       cell: (row, index) => index + 1,
     },
     {
-      name: "Name",
-      cell: (row) => row.type_name,
+      name: "Product Name",
+      cell: (row) => row.product_name,
     },
     {
-      name: "Total",
+      name: "Seen Total",
       cell: (row) => row.seen_count,
     },
   ];
@@ -46,11 +46,11 @@ function TopTable() {
       cell: (row, index) => index + 1,
     },
     {
-      name: "Name",
-      cell: (row) => row.type_name,
+      name: "Product Name",
+      cell: (row) => row.product_name,
     },
     {
-      name: "Total",
+      name: "Share Total",
       cell: (row) => row.share_count,
     },
   ];

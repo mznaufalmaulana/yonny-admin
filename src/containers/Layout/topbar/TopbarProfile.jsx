@@ -3,7 +3,7 @@ import DownIcon from "mdi-react/ChevronDownIcon";
 import { Collapse } from "reactstrap";
 import TopbarMenuLink from "./TopbarMenuLink";
 
-const Ava = `${process.env.PUBLIC_URL}/img/ava.png`;
+const Ava = `${process.env.PUBLIC_URL}/img/avatar.png`;
 
 const TopbarProfile = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);

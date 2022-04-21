@@ -70,8 +70,7 @@ function Add() {
           <Row>
             <Col>
               <div className="card__title">
-                <h5 className="bold-text">Add Data Category</h5>
-                <h5 className="subhead">Example subhead</h5>
+                <h5 className="bold-text">Add Data Category</h5>              
               </div>
             </Col>
           </Row>

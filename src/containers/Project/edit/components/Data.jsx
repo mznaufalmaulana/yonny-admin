@@ -108,12 +108,12 @@ function Index() {
           <Label sm={2}>Share Count</Label>
           <Col sm={10}>
             <Input
-              name="text"
+              name="share"
               placeholder="Input the Share Count"
-              type="text"
+              type="number"
               value={data?.share_count}
               onChange={(e) =>
-                setData({ ...data, product_name: e.target.value })
+                setData({ ...data, share_count: e.target.value })
               }
             />
           </Col>

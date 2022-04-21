@@ -63,10 +63,15 @@ function Index() {
       if (result.message === "success") {
         let list = [];
         result.data[0].product_category.map((item) =>
-          list.push({
-            value: item.id,
-            label: item.category_name,
-          })
+          item.category_parent===null?
+            list.push({
+              value: item.id,
+              label: item.category_name,
+            }) :
+            list.push({
+              value: item.id,
+              label: item.category_parent+' - '+item.category_name,
+            })
         );
         setCategory(list);
         setData(result.data[0]);
@@ -185,34 +190,34 @@ function Index() {
         </FormGroup>
 
         <FormGroup row>
-          <Label sm={2}>Share Count</Label>
+          <Label sm={2}>Seen Count</Label>
           <Col sm={10}>
             <Input
-              name="text"
-              placeholder="Input the Share Count"
-              type="text"
-              value={data?.share_count}
+              name="seen"
+              placeholder="Input the Seen Count"
+              type="number"
+              value={data?.seen_count}
               onChange={(e) =>
-                setData({ ...data, product_name: e.target.value })
+                setData({ ...data, seen_count: e.target.value })
               }
             />
           </Col>
         </FormGroup>
 
         <FormGroup row>
-          <Label sm={2}>Seen Count</Label>
+          <Label sm={2}>Share Count</Label>
           <Col sm={10}>
             <Input
-              name="text"
-              placeholder="Input the Seen Count"
-              type="text"
-              value={data?.seen_count}
+              name="share"
+              placeholder="Input the Share Count"
+              type="number"
+              value={data?.share_count}
               onChange={(e) =>
-                setData({ ...data, product_name: e.target.value })
+                setData({ ...data, share_count: e.target.value })
               }
             />
           </Col>
-        </FormGroup>
+        </FormGroup>        
       </Form>
       <FormGroup row>
         <Col

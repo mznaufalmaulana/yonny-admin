@@ -12,7 +12,7 @@ const Topbar = ({ changeMobileSidebarVisibility, changeSidebarVisibility }) => (
           changeMobileSidebarVisibility={changeMobileSidebarVisibility}
           changeSidebarVisibility={changeSidebarVisibility}
         />
-        <Link className="topbar__logo" to="/online_marketing_dashboard" />
+        <Link className="topbar__logo" to="/home" />
       </div>
       <div className="topbar__right">
         <TopbarProfile />

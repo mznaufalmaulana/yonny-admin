@@ -39,31 +39,38 @@ function Index() {
     {
       name: "No",
       width: "55px",
-      cell: (row, index) => index + 1,
+      cell: (row, index) => index + 1,      
     },
-    {
+    {      
       name: "Product Name",
+      width: "200px",
       cell: (row) => row.product_name,
     },
     {
       name: "Type",
+      width: "150px",
       cell: (row) => row.type_name,
     },
     {
       name: "Category Product",
+      width: "350px",
       cell: (row) =>
         row.product_category.map((item) => (
           <span className="badge badge-pill badge-warning p-2 mr-1">
-            {item.category_name}
+            {
+              item.category_parent===null?
+                item.category_name :
+                item.category_parent+' - '+item.category_name
+            }
           </span>
         )),
     },
     {
-      name: "Seen Count",
+      name: "Seen Count",  
       cell: (row) => row.seen_count,
     },
     {
-      name: "Share Count",
+      name: "Share Count",      
       cell: (row) => row.share_count,
     },
     {
